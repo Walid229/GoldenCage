@@ -10,7 +10,7 @@ package goldencage.Administrateur;
  */
 public class GererComptes extends javax.swing.JFrame {
 
-    /**
+    /**test
      * Creates new form GererComptes
      */
     public GererComptes() {

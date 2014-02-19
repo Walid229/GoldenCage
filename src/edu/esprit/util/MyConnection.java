@@ -10,7 +10,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- *
+ *test
  * @author Karray
  */
 public class MyConnection {

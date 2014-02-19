@@ -23,7 +23,7 @@ public class Test {
         
         abn.setDuree(12);
         abnDao.insertAbonnement(abn);
-        
+        //test
         
     }
     

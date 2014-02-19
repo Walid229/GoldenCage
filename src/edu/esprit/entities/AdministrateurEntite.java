@@ -9,7 +9,7 @@ package edu.esprit.entities;
 import java.util.Objects;
 
 /**
- *
+ *test
  * @author user
  */
 public class AdministrateurEntite {

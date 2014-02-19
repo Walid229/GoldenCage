@@ -10,7 +10,7 @@ import java.sql.Date;
 
 
 /**
- *
+ *test
  * @author user
  */
 public class AbonnementEntite {
