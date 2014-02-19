@@ -9,5 +9,6 @@ package java.util;
  * @author user
  */
 public class Objects {
+    //test
     
 }
