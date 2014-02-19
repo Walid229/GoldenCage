@@ -18,6 +18,14 @@ public class AbonnementEntite {
     private int id_Prest;
     private int duree;
     private Date date_Expiration;
+ /*   
+   public AbonnementEntite(int duree){
+        this.duree=duree;
+        //this.date_Expiration=date_Expiration;
+    }
+*/
+   
+      
 
     /**
      * @return the id_Abonnement
