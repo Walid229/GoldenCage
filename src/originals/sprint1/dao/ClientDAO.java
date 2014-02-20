@@ -25,7 +25,7 @@ public class ClientDAO {
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-   public void AjoutClient(Client a){
+   public void InsertClient(Client a){
 
    
 

@@ -25,6 +25,6 @@ public class TestClient {
         cnx.etablirConnection();
         
         cli.setNom("zr,nsrnt");
-        cliDao.AjoutClient(cli);
+        cliDao.InsertClient(cli);
 }
 }
