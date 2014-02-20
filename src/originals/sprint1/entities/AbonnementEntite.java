@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package edu.esprit.entities;
+package originals.sprint1.entities;
 
 import java.sql.Date;
 

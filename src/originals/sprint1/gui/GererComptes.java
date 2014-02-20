@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package goldencage.Administrateur;
+package originals.sprint1.gui;
 
 /**
  *
@@ -70,7 +70,7 @@ public class GererComptes extends javax.swing.JFrame {
         titre.setFont(new java.awt.Font("Perpetua", 3, 18)); // NOI18N
         titre.setForeground(new java.awt.Color(153, 0, 153));
         titre.setText("Golden Cage");
-        titre.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0), null, null));
+        titre.setBorder(javax.swing.BorderFactory.createBevelBorder(0, new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0), null, null));
         titre.setMaximumSize(new java.awt.Dimension(65, 18));
 
         logout.setText("Logout");

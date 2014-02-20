@@ -2,10 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.esprit.dao;
+package orignals.sprint1.dao;
 
 import edu.esprit.entities.AbonnementEntite;
-import edu.esprit.dao.PrestataireDAO;
+import orignals.sprint1.dao.PrestataireDAO;
 import edu.esprit.util.MyConnection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.esprit.dao;
+package orignals.sprint1.dao;
 
 import edu.esprit.entities.AdministrateurEntite;
 import edu.esprit.util.MyConnection;
