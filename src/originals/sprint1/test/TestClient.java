@@ -6,9 +6,10 @@
 
 package originals.sprint1.test;
 
-import edu.esprit.dao.ClientDAO;
-import edu.esprit.entities.Client;
-import edu.esprit.util.MyConnection;
+import originals.sprint1.dao.ClientDAO;
+import originals.sprint1.entities.Client;
+
+import originals.sprint1.util.MyConnection;
 
 /**
  *

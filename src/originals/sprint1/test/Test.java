@@ -3,10 +3,10 @@
  * and open the template in the editor.
  */
 package originals.sprint1.test;
-import edu.esprit.dao.*;
-import edu.esprit.entities.*;
-import edu.esprit.util.MyConnection;
-import java.sql.Date;
+
+import originals.sprint1.entities.AbonnementEntite;
+import originals.sprint1.util.MyConnection;
+import originals.sprint1.dao.AbonnementDAO;
 
 /**
  *

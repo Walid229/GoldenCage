@@ -6,9 +6,10 @@
 
 package originals.sprint1.test;
 
-import edu.esprit.dao.CommentaireDAO;
-import edu.esprit.entities.Commentaire;
-import edu.esprit.util.MyConnection;
+import originals.sprint1.dao.CommentaireDAO;
+import originals.sprint1.entities.Commentaire;
+
+import originals.sprint1.util.MyConnection;
 
 /**
  *

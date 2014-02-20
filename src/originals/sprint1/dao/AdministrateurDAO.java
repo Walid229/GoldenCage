@@ -2,12 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package orignals.sprint1.dao;
+package originals.sprint1.dao;
 
-import edu.esprit.entities.AdministrateurEntite;
-import edu.esprit.util.MyConnection;
+
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import originals.sprint1.entities.AdministrateurEntite;
+import originals.sprint1.util.MyConnection;
 
 /**
  *test

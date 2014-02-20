@@ -4,18 +4,18 @@
  * and open the template in the editor.
  */
 
-package orignals.sprint1.dao;
+package originals.sprint1.dao;
 
 
-import edu.esprit.entities.Client;
-import edu.esprit.entities.Commentaire;
-import edu.esprit.util.MyConnection;
+
+import originals.sprint1.entities.Commentaire;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import originals.sprint1.util.MyConnection;
 
 /**
  *

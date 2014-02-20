@@ -2,31 +2,32 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package orignals.sprint1.dao;
+package originals.sprint1.dao;
 
-import edu.esprit.entities.AbonnementEntite;
-import orignals.sprint1.dao.PrestataireDAO;
-import edu.esprit.util.MyConnection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import originals.sprint1.entities.AbonnementEntite;
+import originals.sprint1.entities.PrestataireEntite;
+import originals.sprint1.util.MyConnection;
 
 /**
- *
+ *test
  * @author user
  */
-public class AbonnementDAO {
-    public void insertAbonnement(AbonnementEntite a){
+public class PrestataireDAO {
+        public void insertAbonnement(PrestataireEntite p){
 
-   //test
+   
 
-        String requete = "insert into Abonnement values (?)";
+        String requete = "insert into depot (adresse_depot) values (?)";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
-            ps.setInt(1,a.getId_Abonnement());
+            ps.setInt(1,p.getId_Prest());
             ps.executeUpdate();
             System.out.println("Ajout effectuée avec succès");
         } catch (SQLException ex) {
@@ -35,11 +36,11 @@ public class AbonnementDAO {
         }
     }
     
-    public void updateAbonnement(AbonnementEntite d){
-        String requete = "update Abonnement set Date_Expiration=? where Id_Abonnement=?";
+        public void updatePrestataire(PrestataireEntite p){
+        String requete = "update prestataire set Adresse=? AND Mail=? AND Telephone=? where Id_Prest=?";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
-            ps.setInt(1, d.getId_Abonnement());
+            ps.setInt(1, p.getId_Prest());
             ps.executeUpdate();
             System.out.println("Mise à jour effectuée avec succès");
         } catch (SQLException ex) {
@@ -48,73 +49,66 @@ public class AbonnementDAO {
         }
     }
     
-     public void deleteAbonnement(int id){
-        String requete = "delete from Abonnement where Id_Abonnement=?";
+     public void deletePrestataire(int id){
+        String requete = "delete from Prestataire where Id_Prest=?";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
             ps.setInt(1, id);
             ps.executeUpdate();
-            System.out.println("Abonnement supprimée");
+            System.out.println("Prestataire supprimée");
         } catch (SQLException ex) {
            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("erreur lors de la suppression "+ex.getMessage());
         }
     }
 
-/*
-    public AbonnementEntite findAbonnementById(int id){
+
+    public AbonnementEntite findPrestataireById(int id){
     AbonnementEntite abo = new AbonnementEntite();
-     String requete = "select * from Abonnement where Id_Abonnement=?";
+     String requete = "select * from Prestataire where Id_Prest=?";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
             ps.setInt(1, id);
             ResultSet resultat = ps.executeQuery();
             while (resultat.next())
             {
-                abo.setId_Abonnement(resultat.getInt(1));
+                abo.setId_Prest(resultat.getInt(1));
             }
             return abo;
 
         } catch (SQLException ex) {
            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("erreur lors de la recherche de l'Abonnement "+ex.getMessage());
+            System.out.println("erreur lors de la recherche du Prestataire "+ex.getMessage());
             return null;
         }
     }
-*/
+
  
-    public List<AbonnementEntite> DisplayAllAbonnement (){
+    public List<PrestataireEntite> DisplayAllPrestataire (){
 
 
-        List<AbonnementEntite> listeAbonnement = new ArrayList<AbonnementEntite>();
+        List<PrestataireEntite> listePrestataire = new ArrayList<PrestataireEntite>();
 
-        String requete = "select * from Abonnement";
+        String requete = "select * from Prestataire";
         try {
            Statement statement = MyConnection.getInstance()
                    .createStatement();
             ResultSet resultat = statement.executeQuery(requete);
 
             while(resultat.next()){
-                
-                PrestataireDAO prest = new PrestataireDAO();
-                
-                
-                
-                AbonnementEntite abo =new AbonnementEntite();    
-                abo.setId_Abonnement(resultat.getInt(1));
-                prest.findPrestataireById(abo.getId_Prest());
+                PrestataireEntite abo =new PrestataireEntite();
+                abo.setId_Prest(resultat.getInt(1));
                 
 
-                listeAbonnement.add(abo);
-                
+                listePrestataire.add(abo);
             }
-            return listeAbonnement;
+            return listePrestataire;
         } catch (SQLException ex) {
            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("erreur lors du chargement des Abonnement "+ex.getMessage());
+            System.out.println("erreur lors du chargement des Pretataires "+ex.getMessage());
             return null;
         }
     }
- 
-    
+
+
 }
