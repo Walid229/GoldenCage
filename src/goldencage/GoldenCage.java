@@ -18,3 +18,4 @@ public class GoldenCage {
     }
 }///aBNznboNESOBNOEBOesjoetajhojreh^bjao^bhjo^jr 
 //testkais
+//test ameni
