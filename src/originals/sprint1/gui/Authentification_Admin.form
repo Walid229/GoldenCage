@@ -8,7 +8,7 @@
       <Color blue="ff" green="99" red="99" type="rgb"/>
     </Property>
     <Property name="bounds" type="java.awt.Rectangle" editor="org.netbeans.beaninfo.editors.RectangleEditor">
-      <Rectangle value="[50, 50, 0, 0]"/>
+      <Rectangle value="[400, 150, 0, 0]"/>
     </Property>
     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
       <Color id="Default Cursor"/>

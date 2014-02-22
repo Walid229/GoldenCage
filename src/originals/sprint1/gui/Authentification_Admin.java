@@ -6,11 +6,20 @@
 
 package originals.sprint1.gui;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JTextField;
+import originals.sprint1.entities.AdministrateurEntite;
+
 /**
  *
  * @author user
  */
 public class Authentification_Admin extends javax.swing.JFrame {
+
+    public JTextField getLogin() {
+        return login;
+    }
 
     /**
      * Creates new form Authentification_Admin
@@ -40,7 +49,7 @@ public class Authentification_Admin extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Authentification");
         setBackground(new java.awt.Color(153, 153, 255));
-        setBounds(new java.awt.Rectangle(50, 50, 0, 0));
+        setBounds(new java.awt.Rectangle(400, 150, 0, 0));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -139,9 +148,16 @@ public class Authentification_Admin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+       /*List<AdministrateurEntite> admins=new ArrayList<AdministrateurEntite>();
+       for(AdministrateurEntite a:admins){
+        if( (login.getText().equals(a.getLogin()))&&(mdp.getText().equals(a.getPassword()))){*/
+            GererComptes gerercomptes=new GererComptes();
+       gerercomptes.setVisible(true);
+       this.setVisible(false);
+       }
+            /*}
     }//GEN-LAST:event_jButton1ActionPerformed
-
+*/
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
