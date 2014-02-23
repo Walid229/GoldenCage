@@ -36,6 +36,12 @@ public class GererComptes extends javax.swing.JFrame {
         entityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("GoldenCage?zeroDateTimeBehavior=convertToNullPU").createEntityManager();
         clientQuery = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT c FROM Client c");
         clientList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : clientQuery.getResultList();
+        clientQuery1 = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT c FROM Client c");
+        clientList1 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : clientQuery1.getResultList();
+        clientQuery2 = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT c FROM Client c");
+        clientList2 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : clientQuery2.getResultList();
+        prestataireQuery = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT p FROM Prestataire p");
+        prestataireList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : prestataireQuery.getResultList();
         logout = new javax.swing.JButton();
         jTabbedPane4 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
@@ -226,7 +232,8 @@ public class GererComptes extends javax.swing.JFrame {
 
         jTabbedPane4.addTab("Gérer les Comptes", jPanel2);
 
-        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, clientList, jTable2);
+        org.jdesktop.beansbinding.ELProperty eLProperty = org.jdesktop.beansbinding.ELProperty.create("${}");
+        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, clientList2, eLProperty, jTable2);
         bindingGroup.addBinding(jTableBinding);
         jTableBinding.bind();
         jScrollPane3.setViewportView(jTable2);
@@ -264,25 +271,10 @@ public class GererComptes extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Client", jPanel6);
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Prestataire", "Sujet", "Statut"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        eLProperty = org.jdesktop.beansbinding.ELProperty.create("${}");
+        jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, prestataireList, eLProperty, jTable3);
+        bindingGroup.addBinding(jTableBinding);
+        jTableBinding.bind();
         jScrollPane4.setViewportView(jTable3);
 
         jButton5.setText("Valider");
@@ -543,7 +535,11 @@ public class GererComptes extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.util.List<originals.sprint1.gui.Client> clientList;
+    private java.util.List<originals.sprint1.gui.Client> clientList1;
+    private java.util.List<originals.sprint1.gui.Client> clientList2;
     private javax.persistence.Query clientQuery;
+    private javax.persistence.Query clientQuery1;
+    private javax.persistence.Query clientQuery2;
     private java.util.List<originals.sprint1.gui.Customer> customerList;
     private javax.persistence.Query customerQuery;
     private javax.persistence.EntityManager entityManager;
@@ -596,6 +592,8 @@ public class GererComptes extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JButton logout;
+    private java.util.List<originals.sprint1.gui.Prestataire> prestataireList;
+    private javax.persistence.Query prestataireQuery;
     private javax.persistence.EntityManager samplePUEntityManager;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
