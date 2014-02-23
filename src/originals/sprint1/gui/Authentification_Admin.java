@@ -56,6 +56,7 @@ public class Authentification_Admin extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(204, 204, 255));
 
         jLabel1.setFont(new java.awt.Font("MV Boli", 2, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 102));
         jLabel1.setText("Golden Cage");
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 3, 18)); // NOI18N
