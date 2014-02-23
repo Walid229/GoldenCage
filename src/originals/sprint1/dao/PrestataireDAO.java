@@ -19,8 +19,64 @@ import originals.sprint1.util.MyConnection;
  *test
  * @author user
  */
-public class PrestataireDAO {
-        public void insertAbonnement(PrestataireEntite p){
+public class PrestataireDAO extends GeneriqueDAO<PrestataireEntite> {
+
+    @Override
+    public boolean insert(PrestataireEntite obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean delete(PrestataireEntite obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean update(PrestataireEntite obj1, PrestataireEntite obj2) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public PrestataireEntite find(PrestataireEntite obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      /*  public void insertAbonnement(PrestataireEntite p){
 
    
 
@@ -110,5 +166,5 @@ public class PrestataireDAO {
         }
     }
 
-
+*/
 }
