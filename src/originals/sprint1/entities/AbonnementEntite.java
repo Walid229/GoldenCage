@@ -24,7 +24,22 @@ public class AbonnementEntite {
         //this.date_Expiration=date_Expiration;
     }
 */
-   
+   public AbonnementEntite(){
+       
+   }
+
+   public AbonnementEntite(int id_Prest, int duree){
+       this.id_Prest=id_Prest;
+        this.duree = duree;
+        //this.date_Expiration = date_Expiration;
+       
+   }
+
+   public void AbonnementEntite(int duree){
+       this.duree=duree;
+      // this.date_Expiration=date_Expiration;
+       
+   }
       
 
     /**
@@ -69,6 +84,10 @@ public class AbonnementEntite {
         this.duree = duree;
     }
 
+    @Override
+    public String toString() {
+        return "AbonnementEntite{" + " id_Prest=" + id_Prest + ", duree=" + duree + ", date_Expiration=" + date_Expiration + '}';
+    }
     /**
      * @return the date_Expiration
      */

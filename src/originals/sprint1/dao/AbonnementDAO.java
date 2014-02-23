@@ -6,11 +6,10 @@ package originals.sprint1.dao;
 
 
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 import originals.sprint1.entities.AbonnementEntite;
 import originals.sprint1.util.MyConnection;
 
@@ -18,21 +17,123 @@ import originals.sprint1.util.MyConnection;
  *
  * @author user
  */
-public class AbonnementDAO {
-    public void insertAbonnement(AbonnementEntite a){
+public class AbonnementDAO extends GeneriqueDAO<AbonnementEntite> {
+    Statement st ;
+
+    @Override
+    public boolean insert(AbonnementEntite obj) {
+      try {
+          PreparedStatement prepare=MyConnection.getInstance().prepareStatement("insert into Abonnement (Duree, Id_Prest, Date_Expiration) values (?,1,"+15/01/2095+") ");
+          prepare.setInt(1, obj.getId_Prest());
+          prepare.setInt(1, obj.getDuree());
+         // prepare.setDate(1, obj.getDate_Expiration());
+          
+          prepare.executeUpdate();
+          System.out.println("Ajout effectuée avec succès");
+          return true;
+
+        } catch (SQLException ex) {
+             System.out.println("erreur lors de l'insertion "+ex.getMessage());
+          return false;
+        }   
+    }
+
+    @Override
+    public boolean delete(AbonnementEntite obj) {
+try {
+          PreparedStatement prepare=MyConnection.getInstance().prepareStatement("delete from Abonnement where Id_Abonnement='"+obj.getId_Abonnement()+"'");
+          prepare.executeUpdate();
+          System.out.println("Delete Validé");
+          return true;
+
+        } catch (SQLException ex) {
+          System.out.println("Erreur de delete" + ex.getMessage());
+	  return false;
+        }    }
+
+    @Override
+    public boolean update(AbonnementEntite obj1, AbonnementEntite obj2) {
+         try {
+
+        PreparedStatement prepare=MyConnection.getInstance().prepareStatement("UPDATE Abonnement SET date_expiration='"+obj2.getDate_Expiration()+"';");
+
+        prepare.executeUpdate();
+
+        return true;
+
+        } catch (SQLException ex) {
+          return false;
+        }
+    }
+
+    @Override
+    public AbonnementEntite find(AbonnementEntite obj) {
+        
+
+        try
+        {
+
+            st=MyConnection.getInstance().createStatement();
+            
+            ResultSet res =st.executeQuery("select * from abonnement where id_abonnement=1");
+           
+            res.next();
+
+            AbonnementEntite e=new AbonnementEntite(res.getInt(2), res.getInt(3));
+                System.out.println("Trouver :"+e.toString());
+            return e;
+            
+        }
+
+        catch (SQLException ex)
+        {
+            System.out.println("Non valider"+ex.getMessage());
+            return null;
+        }
+
+    }
+}
+
+   
+  
+  
+
+    
+    /*
+    public void insertAbonnement(Object obj){
 
    //test
 
-        String requete = "insert into Abonnement values (?)";
+       /* String requete = "insert into Abonnement (Duree, Id_Prest, Date_Expiration) values (?,1,"+15/01/2095+") ";
         try {
-            PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
-            ps.setInt(1,a.getId_Abonnement());
+            PreparedStatement ps = MyConnection.getInstance().(requete);
+            ps.setInt(1,a.getDuree());
             ps.executeUpdate();
             System.out.println("Ajout effectuée avec succès");
         } catch (SQLException ex) {
            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("erreur lors de l'insertion "+ex.getMessage());
-        }
+        
+        
+        try {
+          PreparedStatement prepare=MyConnection.getInstance().prepareStatement("insert into message values(?,?,?,?)");
+
+            prepare.setInt(1, obj.getId_Mess());
+            prepare.setInt(2, obj.getId_Envoye());
+            prepare.setInt(3, obj.getId_Destinataire());
+            prepare.setString(4,obj.getMessage());
+
+          prepare.executeUpdate();
+          return true;
+
+        } catch (SQLException ex) {
+          return false;
+        }   
+    }
+        
+        
+        
+        
     }
     
     public void updateAbonnement(AbonnementEntite d){
@@ -81,7 +182,7 @@ public class AbonnementDAO {
             return null;
         }
     }
-*/
+
  
     public List<AbonnementEntite> DisplayAllAbonnement (){
 
@@ -116,5 +217,4 @@ public class AbonnementDAO {
         }
     }
  
-    
-}
+  */  

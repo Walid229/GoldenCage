@@ -6,8 +6,6 @@
 
 package originals.sprint1.entities;
 
-import java.util.Objects;
-
 /**
  *
  * @author user
