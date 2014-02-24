@@ -10,7 +10,7 @@ package originals.sprint1.entities;
  *
  * @author user
  */
-import java.util.Objects;
+
 /** * * @author r.neffati */
 public class MessageEntite {
         private int id_Mess; 
@@ -27,36 +27,42 @@ public class MessageEntite {
     @Override 
     public String toString() { 
         return "Message{" + "id_Mess=" + getId_Mess() + ", id_Client=" + getId_Envoye() + ", id_Admin=" + getId_Destinataire() + ", message=" + getMessage() + '}'; 
-    } 
-    @Override 
-    public boolean equals(Object obj)
-    { 
-        if (obj == null) 
-        { 
-            return false; 
-        } 
-        if (getClass() != obj.getClass()) 
-        { 
-            return false;
-        } 
-        final MessageEntite other = (MessageEntite) obj; 
-        if (this.getId_Mess() != other.getId_Mess()) 
-        { 
-            return false;
-        } 
-        if (this.getId_Envoye() != other.getId_Envoye()) 
-        {
-            return false;
-        } 
-        if (this.getId_Destinataire() != other.getId_Destinataire()) 
-        { 
+    }
+    /** * @return the id_Mess */
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 89 * hash + this.id_Mess;
+        hash = 89 * hash + this.id_Envoye;
+        hash = 89 * hash + this.id_Destinataire;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        if (!Objects.equals(this.message, other.message)) {
-            return false; 
-        } 
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final MessageEntite other = (MessageEntite) obj;
+        if (this.id_Mess != other.id_Mess) {
+            return false;
+        }
+        if (this.id_Envoye != other.id_Envoye) {
+            return false;
+        }
+        if (this.id_Destinataire != other.id_Destinataire) {
+            return false;
+        }
+        if ((this.message == null) ? (other.message != null) : !this.message.equals(other.message)) {
+            return false;
+        }
         return true;
-    } /** * @return the id_Mess */
+    }
+
+    
     public int getId_Mess() 
     { 
         return id_Mess; 

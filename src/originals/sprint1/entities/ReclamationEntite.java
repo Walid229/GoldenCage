@@ -6,7 +6,7 @@
 
 package originals.sprint1.entities;
 
-import java.util.Objects;
+
 
 
 /**
@@ -55,32 +55,7 @@ public class ReclamationEntite {
     { 
         return "Reclamation{" + "id_Reclamation=" + id_Reclamation + ", reclamation_text=" + reclamation_text + ", statut=" + statut + '}';
     }
-    @Override 
-    public boolean equals(Object obj)
-    { 
-        if (obj == null) 
-        {
-            return false; 
-        }
-        if (getClass() != obj.getClass())
-        {
-            return false; 
-        }
-        final ReclamationEntite other = (ReclamationEntite) obj;
-        if (this.id_Reclamation != other.id_Reclamation) 
-        { 
-            return false;
-        } 
-        if (!Objects.equals(this.reclamation_text, other.reclamation_text))
-        {
-            return false;
-        }
-        if (this.statut != other.statut) 
-        {
-            return false;
-        }
-        return true;
-    }
+    
     @Override 
     public int hashCode() 
     {
@@ -88,7 +63,32 @@ public class ReclamationEntite {
         hash = 89 * hash + this.id_Reclamation; 
         hash = 89 * hash + (this.reclamation_text != null ? this.reclamation_text.hashCode() : 0); 
         hash = 89 * hash + this.statut; return hash;
-    } /** * @return the id_Reclamant */ 
+    } 
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ReclamationEntite other = (ReclamationEntite) obj;
+        if (this.id_Reclamation != other.id_Reclamation) {
+            return false;
+        }
+        if ((this.reclamation_text == null) ? (other.reclamation_text != null) : !this.reclamation_text.equals(other.reclamation_text)) {
+            return false;
+        }
+        if (this.statut != other.statut) {
+            return false;
+        }
+        if (this.id_Reclamant != other.id_Reclamant) {
+            return false;
+        }
+        return true;
+    }
+/** * @return the id_Reclamant */ 
     public int getId_Reclamant()
     { 
         return id_Reclamant;
