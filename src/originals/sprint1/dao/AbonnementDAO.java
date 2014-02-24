@@ -17,7 +17,7 @@ import originals.sprint1.util.MyConnection;
  *
  * @author user
  */
-public class AbonnementDAO extends GeneriqueDAO<AbonnementEntite> {
+public class AbonnementDAO implements GeneriqueDAO<AbonnementEntite> {
     Statement st ;
 
     @Override

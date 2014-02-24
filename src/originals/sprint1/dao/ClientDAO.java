@@ -20,7 +20,7 @@ import originals.sprint1.util.MyConnection;
  *
  * @author user
  */
-public class ClientDAO extends GeneriqueDAO<ClientEntite>{
+public class ClientDAO implements GeneriqueDAO<ClientEntite>{
     
     /*
  * To change this template, choose Tools | Templates

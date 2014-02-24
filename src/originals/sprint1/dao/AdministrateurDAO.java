@@ -14,7 +14,7 @@ import originals.sprint1.util.MyConnection;
  *test
  * @author user
  */
-public class AdministrateurDAO extends GeneriqueDAO<AdministrateurEntite>{
+public class AdministrateurDAO implements GeneriqueDAO<AdministrateurEntite>{
 
     @Override
     public boolean insert(AdministrateurEntite obj) {
