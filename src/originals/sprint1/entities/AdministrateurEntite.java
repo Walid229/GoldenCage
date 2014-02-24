@@ -18,8 +18,7 @@ public class AdministrateurEntite {
     public AdministrateurEntite() {
     }
 
-    public AdministrateurEntite(int id_Admin, String login, String password) {
-        this.id_Admin = id_Admin;
+    public AdministrateurEntite(String login, String password) {
         this.login = login;
         this.password = password;
     }

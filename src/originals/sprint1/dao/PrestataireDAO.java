@@ -20,25 +20,82 @@ import originals.sprint1.util.MyConnection;
  * @author user
  */
 public class PrestataireDAO extends GeneriqueDAO<PrestataireEntite> {
+    Statement st ;
 
     @Override
     public boolean insert(PrestataireEntite obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+          PreparedStatement prepare=MyConnection.getInstance().prepareStatement("insert into Prestataire (Nom, Telephone, Addresse, Email, Evaluation) values (?,?,?,?,?) ");
+          
+          prepare.setString(1, obj.getNom());
+          prepare.setString(2, obj.getTelephone());
+          prepare.setString(3, obj.getAddresse());
+          prepare.setString(4, obj.getEmail());
+          prepare.setFloat(5, obj.getEvaluation());
+         // prepare.setDate(1, obj.getDate_Expiration());
+          
+          prepare.executeUpdate();
+          System.out.println("Ajout effectuée avec succès");
+          return true;
+
+        } catch (SQLException ex) {
+             System.out.println("erreur lors de l'insertion "+ex.getMessage());
+          return false;
+        }   
     }
 
     @Override
     public boolean delete(PrestataireEntite obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+try {
+          PreparedStatement prepare=MyConnection.getInstance().prepareStatement("delete from Prestataire where Id_Prest=1");
+          prepare.executeUpdate();
+          System.out.println("Delete Validé");
+          return true;
+
+        } catch (SQLException ex) {
+          System.out.println("Erreur de delete" + ex.getMessage());
+	  return false;
+        } 
     }
 
     @Override
     public boolean update(PrestataireEntite obj1, PrestataireEntite obj2) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+             try {
+
+        PreparedStatement prepare=MyConnection.getInstance().prepareStatement("UPDATE Prestataire SET Telephone='"+obj2.getTelephone()+"';");
+
+        prepare.executeUpdate();
+
+        return true;
+
+        } catch (SQLException ex) {
+          return false;
+        }
     }
 
     @Override
     public PrestataireEntite find(PrestataireEntite obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            
+        try
+        {
+
+            st=MyConnection.getInstance().createStatement();
+            
+            ResultSet res =st.executeQuery("select * from Prestataire where Id_Prest=2");
+           
+            res.next();
+
+            PrestataireEntite e=new PrestataireEntite(res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getFloat(6));
+                System.out.println("Trouver :"+e.toString());
+            return e;
+            
+        }
+
+        catch (SQLException ex)
+        {
+            System.out.println("Non Trouver"+ex.getMessage());
+            return null;
+        }
     }
     
     

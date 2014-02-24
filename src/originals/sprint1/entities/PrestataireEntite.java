@@ -21,8 +21,7 @@ public class PrestataireEntite {
     public PrestataireEntite() {
     }
 
-    public PrestataireEntite(int id_Prest, String nom, String telephone, String addresse, String email, float evaluation) {
-        this.id_Prest = id_Prest;
+    public PrestataireEntite( String nom, String telephone, String addresse, String email, float evaluation) {
         this.nom = nom;
         this.telephone = telephone;
         this.addresse = addresse;
