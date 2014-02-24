@@ -7,7 +7,7 @@
 package originals.sprint1.dao;
 
 
-import originals.sprint1.entities.Client;
+import originals.sprint1.entities.ClientEntite;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,16 +20,17 @@ import originals.sprint1.util.MyConnection;
  *
  * @author user
  */
-public class ClientDAO {
+public class ClientDAO extends GeneriqueDAO<ClientEntite>{
+    
     /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-   public void InsertClient(Client a){
+ /*  public void InsertClient(ClientEntite a){
 
    
 
-        String requete = "insert into Client values (?)";
+        String requete = "insert into ClientEntite values (?)";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
             ps.setInt(1,a.getId_Client());
@@ -44,8 +45,8 @@ public class ClientDAO {
         }
     }
     
-  /* public void updateClient(Client c){
-        String requete = "update Client set Login=?, password=? where Id_Client=?";
+  /* public void updateClient(ClientEntite c){
+        String requete = "update ClientEntite set Login=?, password=? where Id_Client=?";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
             ps.setInt(1,c.getId_Client());
@@ -59,14 +60,14 @@ public class ClientDAO {
             System.out.println("erreur lors de la mise à jour "+ex.getMessage());
         }
     }*/
-    
+    /*
      public void deleteClient(int id){
-        String requete = "delete from Client where Id_Client=?";
+        String requete = "delete from ClientEntite where Id_Client=?";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
             ps.setInt(1, id);
             ps.executeUpdate();
-            System.out.println("Client supprimée");
+            System.out.println("ClientEntite supprimée");
         } catch (SQLException ex) {
            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("erreur lors de la suppression "+ex.getMessage());
@@ -74,9 +75,9 @@ public class ClientDAO {
     }
 
 
-    public Client findClientById(int id){
-    Client cli= new Client();
-     String requete = "select * from Client where Id_Client=?";
+    public ClientEntite findClientById(int id){
+    ClientEntite cli= new ClientEntite();
+     String requete = "select * from ClientEntite where Id_Client=?";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
             ps.setInt(1, id);
@@ -89,13 +90,13 @@ public class ClientDAO {
 
         } catch (SQLException ex) {
            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("erreur lors de la recherche du Client "+ex.getMessage());
+            System.out.println("erreur lors de la recherche du ClientEntite "+ex.getMessage());
             return null;
         }
     }
-    public Client findClientByNom(String nom){
-        Client cli= new Client();
-     String requete = "select * from Client where nom=?";
+    public ClientEntite findClientByNom(String nom){
+        ClientEntite cli= new ClientEntite();
+     String requete = "select * from ClientEntite where nom=?";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
             ps.setString(1, nom);
@@ -108,7 +109,7 @@ public class ClientDAO {
 
         } catch (SQLException ex) {
            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("erreur lors de la recherche du Client "+ex.getMessage());
+            System.out.println("erreur lors de la recherche du ClientEntite "+ex.getMessage());
             return null;
         }
     }
@@ -119,7 +120,7 @@ public class ClientDAO {
 
         List<Client> listeClient = new ArrayList<Client>();
 
-        String requete = "select * from Client";
+        String requete = "select * from ClientEntite";
         try {
            Statement statement = MyConnection.getInstance()
                    .createStatement();
@@ -127,7 +128,7 @@ public class ClientDAO {
 
             while(resultat.next()){
                 
-                Client cli =new Client();    
+                ClientEntite cli =new ClientEntite();    
                 cli.setId_Client(resultat.getInt(1));
                 cli.setNom(resultat.getString(2));
                 cli.setLogin(resultat.getString(3));
@@ -137,9 +138,33 @@ public class ClientDAO {
             return listeClient;
         } catch (SQLException ex) {
            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("erreur lors du chargement des Client "+ex.getMessage());
+            System.out.println("erreur lors du chargement des ClientEntite "+ex.getMessage());
             return null;
         }
+    }
+*/
+    @Override
+    public boolean insert(ClientEntite obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean delete(ClientEntite obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean update(ClientEntite obj1, ClientEntite obj2) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ClientEntite find(ClientEntite obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+       public List listfind(ClientEntite obj) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
  
     

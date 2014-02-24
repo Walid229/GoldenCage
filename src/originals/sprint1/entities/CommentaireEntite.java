@@ -12,16 +12,16 @@ package originals.sprint1.entities;
  *
  * @author user
  */
-public class Commentaire {
+public class CommentaireEntite {
     private int id_Comm;
-    private Client client;
+    private ClientEntite client;
     private PrestataireEntite prest;
     private String textDuComm;
 
-    public Commentaire() {
+    public CommentaireEntite() {
     }
 
-    public Commentaire(int id_Comm, Client client, PrestataireEntite prest, String textDuComm) {
+    public CommentaireEntite(int id_Comm, ClientEntite client, PrestataireEntite prest, String textDuComm) {
         this.id_Comm = id_Comm;
         this.client = client;
         this.prest = prest;
@@ -32,7 +32,7 @@ public class Commentaire {
         return id_Comm;
     }
 
-    public Client getClient() {
+    public ClientEntite getClient() {
         return client;
     }
 
@@ -48,7 +48,7 @@ public class Commentaire {
         this.id_Comm = id_Comm;
     }
 
-    public void setClient(Client client) {
+    public void setClient(ClientEntite client) {
         this.client = client;
     }
 

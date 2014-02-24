@@ -7,7 +7,7 @@
 package originals.sprint1.test;
 
 import originals.sprint1.dao.CommentaireDAO;
-import originals.sprint1.entities.Commentaire;
+import originals.sprint1.entities.CommentaireEntite;
 
 import originals.sprint1.util.MyConnection;
 
@@ -18,13 +18,9 @@ import originals.sprint1.util.MyConnection;
 public class TestCommentaire {
     public static void main(String[] args){
         MyConnection cnx = new MyConnection();
-        Commentaire comm= new Commentaire();
+        CommentaireEntite comm= new CommentaireEntite();
         CommentaireDAO commDao = new CommentaireDAO();
         
-        
-        cnx.etablirConnection();
-        
-        comm.setTextDuComm("jezraohgjoahbt");
-        commDao.AjoutComm(comm);
+     
 }
 }

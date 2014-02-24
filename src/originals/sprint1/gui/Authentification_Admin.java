@@ -17,9 +17,7 @@ import originals.sprint1.entities.AdministrateurEntite;
  */
 public class Authentification_Admin extends javax.swing.JFrame {
 
-    public JTextField getLogin() {
-        return login;
-    }
+    
 
     /**
      * Creates new form Authentification_Admin
@@ -153,8 +151,9 @@ public class Authentification_Admin extends javax.swing.JFrame {
        for(AdministrateurEntite a:admins){
         if( (login.getText().equals(a.getLogin()))&&(mdp.getText().equals(a.getPassword()))){*/
             GererComptes gerercomptes=new GererComptes();
-       gerercomptes.setVisible(true);
-       this.setVisible(false);
+            gerercomptes.setVisible(true);
+            this.setVisible(false);
+            
        }
             /*}
     }//GEN-LAST:event_jButton1ActionPerformed

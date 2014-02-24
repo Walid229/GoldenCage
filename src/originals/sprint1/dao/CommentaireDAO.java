@@ -8,7 +8,7 @@ package originals.sprint1.dao;
 
 
 
-import originals.sprint1.entities.Commentaire;
+import originals.sprint1.entities.CommentaireEntite;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,12 +21,12 @@ import originals.sprint1.util.MyConnection;
  *
  * @author user
  */
-public class CommentaireDAO {
-    public void AjoutComm(Commentaire a){
+public class CommentaireDAO extends GeneriqueDAO<CommentaireEntite>{
+   /* public void AjoutComm(CommentaireEntite a){
 
    
 
-        String requete = "insert into Commentaire values (?)";
+        String requete = "insert into CommentaireEntite values (?)";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
             ps.setInt(1,a.getId_Comm());
@@ -43,7 +43,7 @@ public class CommentaireDAO {
 
     
      public void deleteCommentaire(int id){
-        String requete = "delete from Commentaire where Id_Comm=?";
+        String requete = "delete from CommentaireEntite where Id_Comm=?";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
             ps.setInt(1, id);
@@ -56,9 +56,9 @@ public class CommentaireDAO {
     }
 
 
-    public Commentaire findCommentaireById(int id){
-    Commentaire comm= new Commentaire();
-     String requete = "select * from Commentaire where Id_Comm=?";
+    public CommentaireEntite findCommentaireById(int id){
+    CommentaireEntite comm= new CommentaireEntite();
+     String requete = "select * from CommentaireEntite where Id_Comm=?";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
             ps.setInt(1, id);
@@ -71,13 +71,13 @@ public class CommentaireDAO {
 
         } catch (SQLException ex) {
            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("erreur lors de la recherche du Commentaire"+ex.getMessage());
+            System.out.println("erreur lors de la recherche du CommentaireEntite"+ex.getMessage());
             return null;
         }
     }
-    public Commentaire findClientByText(String text){
-        Commentaire comm= new Commentaire();
-     String requete = "select * from Commentaire where Commentaire=?";
+    public CommentaireEntite findClientByText(String text){
+        CommentaireEntite comm= new CommentaireEntite();
+     String requete = "select * from CommentaireEntite where CommentaireEntite=?";
         try {
             PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
             ps.setString(1, text);
@@ -90,7 +90,7 @@ public class CommentaireDAO {
 
         } catch (SQLException ex) {
            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("erreur lors de la recherche du Commentaire "+ex.getMessage());
+            System.out.println("erreur lors de la recherche du CommentaireEntite "+ex.getMessage());
             return null;
         }
     }
@@ -101,7 +101,7 @@ public class CommentaireDAO {
 
         List<Commentaire> listeCommentaire = new ArrayList<Commentaire>();
 
-        String requete = "select * from Commentaire";
+        String requete = "select * from CommentaireEntite";
         try {
            Statement statement = MyConnection.getInstance()
                    .createStatement();
@@ -109,19 +109,44 @@ public class CommentaireDAO {
 
             while(resultat.next()){
                 
-                Commentaire comm =new Commentaire();    
+                CommentaireEntite comm =new CommentaireEntite();    
                 comm.setId_Comm(resultat.getInt(1));
                /* comm.setPrest(PrestataireDAO(resultat.getInt(1)));
                 comm.setId_Prest(resultat.getInt(3));*/
-                comm.setTextDuComm(resultat.getString(4));
+               /* comm.setTextDuComm(resultat.getString(4));
                 listeCommentaire.add(comm);
             }
             return listeCommentaire;
         } catch (SQLException ex) {
            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("erreur lors du chargement des Commentaire "+ex.getMessage());
+            System.out.println("erreur lors du chargement des CommentaireEntite "+ex.getMessage());
             return null;
         }
+    }*/
+
+    @Override
+    public boolean insert(CommentaireEntite obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean delete(CommentaireEntite obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean update(CommentaireEntite obj1, CommentaireEntite obj2) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public CommentaireEntite find(CommentaireEntite obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
+    public List listfind(CommentaireEntite obj) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

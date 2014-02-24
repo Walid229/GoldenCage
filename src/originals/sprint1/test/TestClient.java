@@ -7,7 +7,7 @@
 package originals.sprint1.test;
 
 import originals.sprint1.dao.ClientDAO;
-import originals.sprint1.entities.Client;
+import originals.sprint1.entities.ClientEntite;
 
 import originals.sprint1.util.MyConnection;
 
@@ -18,13 +18,9 @@ import originals.sprint1.util.MyConnection;
 public class TestClient {
      public static void main(String[] args){
         MyConnection cnx = new MyConnection();
-        Client cli= new Client();
+        ClientEntite cli= new ClientEntite();
         ClientDAO cliDao = new ClientDAO();
         
-        
-        cnx.etablirConnection();
-        
-        cli.setNom("zr,nsrnt");
-        cliDao.InsertClient(cli);
+     
 }
 }
