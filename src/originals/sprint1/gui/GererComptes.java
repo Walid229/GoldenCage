@@ -4,6 +4,11 @@
  */
 package originals.sprint1.gui;
 
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import originals.sprint1.entities.PrestataireEntite;
+import originals.sprint1.metier.PrestataireMetier;
+
 /**
  *
  * @author user
@@ -27,7 +32,6 @@ public class GererComptes extends javax.swing.JFrame {
     private void initComponents() {
 
         titre = new javax.swing.JLabel();
-        logout = new javax.swing.JButton();
         jTabbedPane4 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -64,6 +68,10 @@ public class GererComptes extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        logout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,20 +81,13 @@ public class GererComptes extends javax.swing.JFrame {
         titre.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0), null, null));
         titre.setMaximumSize(new java.awt.Dimension(65, 18));
 
-        logout.setText("Logout");
-        logout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logoutActionPerformed(evt);
-            }
-        });
-
         jTabbedPane4.setName("Accueil"); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 951, Short.MAX_VALUE)
+            .addGap(0, 1010, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,7 +153,7 @@ public class GererComptes extends javax.swing.JFrame {
                 .addComponent(jScrollPane2)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(218, Short.MAX_VALUE)
+                .addContainerGap(277, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -214,7 +215,7 @@ public class GererComptes extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 951, Short.MAX_VALUE)
+            .addGap(0, 1010, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -227,7 +228,7 @@ public class GererComptes extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 951, Short.MAX_VALUE)
+            .addGap(0, 1010, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -257,9 +258,19 @@ public class GererComptes extends javax.swing.JFrame {
         });
 
         jButton4.setText("Télécharger");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton6.setText("Créer");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton7.setText("Annuler");
@@ -291,11 +302,14 @@ public class GererComptes extends javax.swing.JFrame {
                         .addComponent(jTextField5)
                         .addComponent(jTextField6)
                         .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton4))
-                .addContainerGap(292, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jButton4)
+                        .addGap(38, 38, 38)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(351, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                    .addContainerGap(562, Short.MAX_VALUE)
+                    .addContainerGap(621, Short.MAX_VALUE)
                     .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(277, 277, 277)))
         );
@@ -329,8 +343,9 @@ public class GererComptes extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jButton4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                    .addComponent(jButton4)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -341,6 +356,37 @@ public class GererComptes extends javax.swing.JFrame {
         );
 
         jTabbedPane4.addTab("Créer Comptes", jPanel3);
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1010, Short.MAX_VALUE)
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 487, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jTabbedPane4.addTab("Modifier Prestataires", jPanel6);
+
+        logout.setText("Logout");
+        logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -354,7 +400,7 @@ public class GererComptes extends javax.swing.JFrame {
                         .addGap(358, 358, 358)
                         .addComponent(logout))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
+                        .addGap(49, 49, 49)
                         .addComponent(jTabbedPane4)))
                 .addContainerGap())
         );
@@ -385,6 +431,50 @@ public class GererComptes extends javax.swing.JFrame {
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
+
+    JFileChooser choix;
+    String UrlImg=null;
+    String nomImg="anonyme3.png";
+    int retour;
+    boolean click=false;
+    
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        PrestataireEntite prest = new PrestataireEntite();
+        prest.setNom(jTextField2.getText());
+        prest.setLogin(jTextField3.getText());
+        prest.setMdp(jTextField4.getText());
+        prest.setAddresse(jTextField5.getText());
+        prest.setEmail(jTextField6.getText());
+        prest.setTelephone(jTextField7.getText());
+        
+       PrestataireMetier prestM = new PrestataireMetier();
+        prestM.ajout(prest);
+       /* PrestataireDAO pres = new PrestataireDAO();
+        pres.insert(prest);*/
+        
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+                  click=true;
+        MonFiltre mfi = new MonFiltre(new String[]{"gif","tif","jpeg","jpg","tiff"},"les fichiers images (*.gif, *.tif,*.jpeg)");
+        choix = new JFileChooser();
+        choix.addChoosableFileFilter(mfi);
+        retour=choix.showOpenDialog(choix);
+
+        if(retour==choix.APPROVE_OPTION)
+        {
+             nomImg=choix.getSelectedFile().getName().toString();
+             UrlImg=choix.getSelectedFile().getAbsolutePath();
+             
+        //afficher l'image dans la label
+
+        ImageIcon img = new ImageIcon(UrlImg);
+        img = new ImageIcon(img.getImage().getScaledInstance(100,100,jLabel8.CENTER));
+        jLabel8.setIcon(img);
+
+  
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -440,12 +530,15 @@ public class GererComptes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JList jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane4;

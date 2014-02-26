@@ -5,8 +5,13 @@
 package originals.sprint1.dao;
 
 
+import java.awt.image.RenderedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import javax.imageio.ImageIO;
 import originals.sprint1.entities.AdministrateurEntite;
 import originals.sprint1.util.MyConnection;
 
@@ -24,6 +29,7 @@ public class AdministrateurDAO extends GeneriqueDAO<AdministrateurEntite>{
           prepare.setString(2, obj.getPassword());
          // prepare.setDate(1, obj.getDate_Expiration());
           
+ 
           prepare.executeUpdate();
           System.out.println("Ajout effectuée avec succès");
           return true;
@@ -41,7 +47,17 @@ public class AdministrateurDAO extends GeneriqueDAO<AdministrateurEntite>{
 
     @Override
     public boolean update(AdministrateurEntite obj1, AdministrateurEntite obj2) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            try {
+
+        PreparedStatement prepare=MyConnection.getInstance().prepareStatement("UPDATE Administrateur SET Pwd='"+obj2.getPassword()+"';");
+
+        prepare.executeUpdate();
+
+        return true;
+
+        } catch (SQLException ex) {
+          return false;
+        }
     }
 
     @Override

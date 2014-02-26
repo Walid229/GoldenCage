@@ -32,7 +32,7 @@
                       <Component id="logout" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                       <Component id="jTabbedPane4" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -77,14 +77,6 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="logout">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Logout"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="logoutActionPerformed"/>
-      </Events>
-    </Component>
     <Container class="javax.swing.JTabbedPane" name="jTabbedPane4">
       <Properties>
         <Property name="name" type="java.lang.String" value="Accueil" noResource="true"/>
@@ -107,7 +99,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="951" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="1010" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -134,7 +126,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="218" max="32767" attributes="0"/>
+                      <EmptySpace pref="277" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -356,7 +348,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="951" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="1010" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -378,7 +370,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="951" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="1010" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -426,13 +418,17 @@
                               <Component id="jTextField6" alignment="0" max="32767" attributes="0"/>
                               <Component id="jTextField7" alignment="0" min="-2" pref="234" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jButton4" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="jButton4" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                              <Component id="jLabel8" min="-2" pref="99" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace pref="292" max="32767" attributes="0"/>
+                      <EmptySpace pref="351" max="32767" attributes="0"/>
                   </Group>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="562" max="32767" attributes="0"/>
+                          <EmptySpace pref="621" max="32767" attributes="0"/>
                           <Component id="jButton6" min="-2" pref="112" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="277" max="-2" attributes="0"/>
                       </Group>
@@ -476,8 +472,9 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButton4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel8" alignment="3" min="-2" pref="78" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="83" max="32767" attributes="0"/>
+                      <EmptySpace pref="28" max="32767" attributes="0"/>
                       <Component id="jButton7" min="-2" pref="48" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                   </Group>
@@ -546,6 +543,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="T&#xe9;l&#xe9;charger"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButton6">
               <Properties>
@@ -554,6 +554,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cr&#xe9;er"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton6ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButton7">
               <Properties>
@@ -563,9 +566,58 @@
                 <Property name="text" type="java.lang.String" value="Annuler"/>
               </Properties>
             </Component>
+            <Component class="javax.swing.JLabel" name="jLabel8">
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="jPanel6">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Modifier Prestataires">
+                <Property name="tabTitle" type="java.lang.String" value="Modifier Prestataires"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jPanel7" alignment="0" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jPanel7" alignment="0" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Container class="javax.swing.JPanel" name="jPanel7">
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <EmptySpace min="0" pref="1010" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <EmptySpace min="0" pref="487" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+            </Container>
           </SubComponents>
         </Container>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="logout">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Logout"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="logoutActionPerformed"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>

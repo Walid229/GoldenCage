@@ -5,12 +5,18 @@
 package originals.sprint1.dao;
 
 
+import java.awt.Image;
+import java.awt.image.RenderedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.imageio.ImageIO;
 import originals.sprint1.entities.AbonnementEntite;
 import originals.sprint1.entities.PrestataireEntite;
 import originals.sprint1.util.MyConnection;
@@ -21,18 +27,21 @@ import originals.sprint1.util.MyConnection;
  */
 public class PrestataireDAO extends GeneriqueDAO<PrestataireEntite> {
     Statement st ;
-
+    Image img;
     @Override
     public boolean insert(PrestataireEntite obj) {
         try {
-          PreparedStatement prepare=MyConnection.getInstance().prepareStatement("insert into Prestataire (Nom, Telephone, Addresse, Email, Evaluation) values (?,?,?,?,?) ");
+          PreparedStatement prepare=MyConnection.getInstance().prepareStatement("insert into Prestataire (Nom, Telephone, Addresse, Email, Login, Mdp, Evaluation) values (?,?,?,?,?,?,?) ");
           
           prepare.setString(1, obj.getNom());
           prepare.setString(2, obj.getTelephone());
           prepare.setString(3, obj.getAddresse());
           prepare.setString(4, obj.getEmail());
-          prepare.setFloat(5, obj.getEvaluation());
+          prepare.setString(5, obj.getLogin());
+          prepare.setString(6, obj.getMdp());
+          prepare.setFloat(7, obj.getEvaluation());
          // prepare.setDate(1, obj.getDate_Expiration());
+          
           
           prepare.executeUpdate();
           System.out.println("Ajout effectuée avec succès");
@@ -41,7 +50,9 @@ public class PrestataireDAO extends GeneriqueDAO<PrestataireEntite> {
         } catch (SQLException ex) {
              System.out.println("erreur lors de l'insertion "+ex.getMessage());
           return false;
-        }   
+        } 
+        
+        
     }
 
     @Override
@@ -85,7 +96,7 @@ try {
            
             res.next();
 
-            PrestataireEntite e=new PrestataireEntite(res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getFloat(6));
+            PrestataireEntite e=new PrestataireEntite(res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getFloat(6), res.getString(7), res.getString(8));
                 System.out.println("Trouver :"+e.toString());
             return e;
             
@@ -96,6 +107,13 @@ try {
             System.out.println("Non Trouver"+ex.getMessage());
             return null;
         }
+        
+        
+        
+        
+        
+        
+        
     }
     
     
