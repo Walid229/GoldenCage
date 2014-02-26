@@ -14,7 +14,7 @@ import originals.sprint1.util.MyConnection;
  *
  * @author user
  */
-public class MessageMetier {
+public class Message_ClientMetier {
     MyConnection cnx = new MyConnection();
     Message_ClientEntite abnEnt = new Message_ClientEntite();
     Message_ClientDAO abnDao = new Message_ClientDAO();

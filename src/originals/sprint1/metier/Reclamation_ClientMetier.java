@@ -14,7 +14,7 @@ import originals.sprint1.util.MyConnection;
  *
  * @author user
  */
-public class ReclamationMetier {
+public class Reclamation_ClientMetier {
     MyConnection cnx = new MyConnection();
     Reclamation_ClientEntite abnEnt = new Reclamation_ClientEntite();
     Reclamation_ClientDAO abnDao = new Reclamation_ClientDAO();
