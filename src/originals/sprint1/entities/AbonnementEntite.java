@@ -15,9 +15,9 @@ import java.sql.Date;
  */
 public class AbonnementEntite {
     private  int id_Abonnement;
-    private int id_Prest;
+    private int id_Prestataire;
     private int duree;
-    private Date date_Expiration;
+    private Date date;
  /*   
    public AbonnementEntite(int duree){
         this.duree=duree;
@@ -29,7 +29,7 @@ public class AbonnementEntite {
    }
 
    public AbonnementEntite(int id_Prest, int duree){
-       this.id_Prest=id_Prest;
+       this.id_Prestataire=id_Prest;
         this.duree = duree;
         //this.date_Expiration = date_Expiration;
        
@@ -60,14 +60,14 @@ public class AbonnementEntite {
      * @return the id_Prest
      */
     public int getId_Prest() {
-        return id_Prest;
+        return id_Prestataire;
     }
 
     /**
      * @param id_Prest the id_Prest to set
      */
     public void setId_Prest(int id_Prest) {
-        this.id_Prest = id_Prest;
+        this.id_Prestataire = id_Prest;
     }
 
     /**
@@ -86,20 +86,20 @@ public class AbonnementEntite {
 
     @Override
     public String toString() {
-        return "AbonnementEntite{" + " id_Prest=" + id_Prest + ", duree=" + duree + ", date_Expiration=" + date_Expiration + '}';
+        return "AbonnementEntite{" + " id_Prest=" + id_Prestataire + ", duree=" + duree + ", date_Expiration=" + date + '}';
     }
     /**
      * @return the date_Expiration
      */
     public Date getDate_Expiration() {
-        return date_Expiration;
+        return date;
     }
 
     /**
      * @param date_Expiration the date_Expiration to set
      */
     public void setDate_Expiration(Date date_Expiration) {
-        this.date_Expiration = date_Expiration;
+        this.date = date_Expiration;
     }
 
 
