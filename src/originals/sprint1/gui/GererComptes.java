@@ -4,6 +4,7 @@
  */
 package originals.sprint1.gui;
 
+import com.toedter.calendar.JCalendar;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -31,6 +32,7 @@ public class GererComptes extends javax.swing.JFrame {
     String nomImg="anonyme3.png";
     int retour;
     boolean click=false;
+    JCalendar j1=new JCalendar();
     
     Connection conn;
     ResultSet rs=null;
@@ -52,7 +54,7 @@ public class GererComptes extends javax.swing.JFrame {
     public GererComptes() {
         initComponents();
         conn=MyConnection.getInstance();
-        update_table();
+       // update_table();
         prestataire_table();
         
         
@@ -153,6 +155,8 @@ public class GererComptes extends javax.swing.JFrame {
         compte_table = new javax.swing.JTable();
         jLabel15 = new javax.swing.JLabel();
         label_details = new javax.swing.JLabel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -395,6 +399,7 @@ public class GererComptes extends javax.swing.JFrame {
 
         compte_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null},
                 {null, null, null},
                 {null, null, null},
                 {null, null, null},
@@ -784,6 +789,7 @@ public class GererComptes extends javax.swing.JFrame {
             
             int row=prestataire_table.getSelectedRow();
             String prest_click=(prestataire_table.getModel().getValueAt(row, 0).toString());
+            
             System.out.println("la veleuur est  "+prest_click);
             String sql="select id_prestataire as Identifiant, date as Expire, duree as Durée from abonnement where id_prestataire='"+prest_click+"' ";
             pst=conn.prepareStatement(sql);
@@ -856,6 +862,8 @@ public class GererComptes extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckBox3;
     private javax.swing.JCheckBox jCheckBox5;
     private javax.swing.JCheckBox jCheckBox6;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
