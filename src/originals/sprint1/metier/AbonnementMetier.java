@@ -20,7 +20,7 @@ import originals.sprint1.util.MyConnection;
 public class AbonnementMetier {
     public void ajout(){
        
-        AbonnementEntite abn = new AbonnementEntite(1,10);
+        AbonnementEntite abn = new AbonnementEntite();
         AbonnementDAO abnDao = new AbonnementDAO();   
         
         abnDao.insert(abn);
@@ -29,7 +29,7 @@ public class AbonnementMetier {
     
     public void supprimer(){
        
-        AbonnementEntite abn = new AbonnementEntite(1,10);
+        AbonnementEntite abn = new AbonnementEntite();
         AbonnementDAO abnDao = new AbonnementDAO();   
             
         abnDao.delete(abn);
@@ -38,7 +38,7 @@ public class AbonnementMetier {
     
     public void recherche(){
        
-        AbonnementEntite abn = new AbonnementEntite(1,10);
+        AbonnementEntite abn = new AbonnementEntite();
         AbonnementDAO abnDao = new AbonnementDAO();   
 
         abnDao.find(abn);
@@ -46,7 +46,7 @@ public class AbonnementMetier {
     
     public void mise_a_jour(){
        
-        AbonnementEntite abn = new AbonnementEntite(1,10);
+        AbonnementEntite abn = new AbonnementEntite();
         AbonnementDAO abnDao = new AbonnementDAO();   
 
         abnDao.update(abn, abn);

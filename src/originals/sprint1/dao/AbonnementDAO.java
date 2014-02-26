@@ -23,7 +23,7 @@ public class AbonnementDAO implements GeneriqueDAO<AbonnementEntite> {
     @Override
     public boolean insert(AbonnementEntite obj) {
       try {
-          PreparedStatement prepare=MyConnection.getInstance().prepareStatement("insert into Abonnement (Duree, Id_Prest, Date_Expiration) values (?,1,"+15/01/2095+") ");
+          PreparedStatement prepare=MyConnection.getInstance().prepareStatement("insert into abonnement (duree, id_prestataire, date) values (?,?,?) ");
           prepare.setInt(1, obj.getId_Prest());
           prepare.setInt(1, obj.getDuree());
          // prepare.setDate(1, obj.getDate_Expiration());
@@ -41,7 +41,7 @@ public class AbonnementDAO implements GeneriqueDAO<AbonnementEntite> {
     @Override
     public boolean delete(AbonnementEntite obj) {
 try {
-          PreparedStatement prepare=MyConnection.getInstance().prepareStatement("delete from Abonnement where Id_Abonnement='"+obj.getId_Abonnement()+"'");
+          PreparedStatement prepare=MyConnection.getInstance().prepareStatement("delete from abonnement where id_abonnement='"+obj.getId_Abonnement()+"'");
           prepare.executeUpdate();
           System.out.println("Delete Validé");
           return true;
@@ -55,7 +55,7 @@ try {
     public boolean update(AbonnementEntite obj1, AbonnementEntite obj2) {
          try {
 
-        PreparedStatement prepare=MyConnection.getInstance().prepareStatement("UPDATE Abonnement SET date_expiration='"+obj2.getDate_Expiration()+"';");
+        PreparedStatement prepare=MyConnection.getInstance().prepareStatement("UPDATE abonnement SET date='"+obj2.getDate_Expiration()+"';");
 
         prepare.executeUpdate();
 
