@@ -20,155 +20,77 @@ import originals.sprint1.util.MyConnection;
  *
  * @author user
  */
-public class ClientDAO implements GeneriqueDAO<ClientEntite>{
-    
-    /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
- /*  public void InsertClient(ClientEntite a){
-
-   
-
-        String requete = "insert into ClientEntite values (?)";
-        try {
-            PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
-            ps.setInt(1,a.getId_Client());
-            ps.setString(2,a.getNom());
-            ps.setString(3,a.getLogin());
-            ps.setString(4,a.getPassword());
-            ps.executeUpdate();
-            System.out.println("Ajout effectuée avec succès");
-        } catch (SQLException ex) {
-           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("erreur lors de l'insertion "+ex.getMessage());
-        }
-    }
-    
-  /* public void updateClient(ClientEntite c){
-        String requete = "update ClientEntite set Login=?, password=? where Id_Client=?";
-        try {
-            PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
-            ps.setInt(1,c.getId_Client());
-            ps.setString(2,c.getNom());
-            ps.setString(3,c.getLogin());
-            ps.setString(4,c.getPassword());
-            ps.executeUpdate();
-            System.out.println("Mise à jour effectuée avec succès");
-        } catch (SQLException ex) {
-           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("erreur lors de la mise à jour "+ex.getMessage());
-        }
-    }*/
-    /*
-     public void deleteClient(int id){
-        String requete = "delete from ClientEntite where Id_Client=?";
-        try {
-            PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
-            ps.setInt(1, id);
-            ps.executeUpdate();
-            System.out.println("ClientEntite supprimée");
-        } catch (SQLException ex) {
-           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("erreur lors de la suppression "+ex.getMessage());
-        }
-    }
-
-
-    public ClientEntite findClientById(int id){
-    ClientEntite cli= new ClientEntite();
-     String requete = "select * from ClientEntite where Id_Client=?";
-        try {
-            PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
-            ps.setInt(1, id);
-            ResultSet resultat = ps.executeQuery();
-            while (resultat.next())
-            {
-                cli.setId_Client(resultat.getInt(1));
-            }
-            return cli;
-
-        } catch (SQLException ex) {
-           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("erreur lors de la recherche du ClientEntite "+ex.getMessage());
-            return null;
-        }
-    }
-    public ClientEntite findClientByNom(String nom){
-        ClientEntite cli= new ClientEntite();
-     String requete = "select * from ClientEntite where nom=?";
-        try {
-            PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
-            ps.setString(1, nom);
-            ResultSet resultat = ps.executeQuery();
-            while (resultat.next())
-            {
-                cli.setNom(resultat.getString(1));
-            }
-            return cli;
-
-        } catch (SQLException ex) {
-           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("erreur lors de la recherche du ClientEntite "+ex.getMessage());
-            return null;
-        }
-    }
-
- 
-    public List<Client> DisplayAllClient (){
-
-
-        List<Client> listeClient = new ArrayList<Client>();
-
-        String requete = "select * from ClientEntite";
-        try {
-           Statement statement = MyConnection.getInstance()
-                   .createStatement();
-            ResultSet resultat = statement.executeQuery(requete);
-
-            while(resultat.next()){
-                
-                ClientEntite cli =new ClientEntite();    
-                cli.setId_Client(resultat.getInt(1));
-                cli.setNom(resultat.getString(2));
-                cli.setLogin(resultat.getString(3));
-                cli.setPassword(resultat.getString(4));
-                listeClient.add(cli);
-            }
-            return listeClient;
-        } catch (SQLException ex) {
-           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("erreur lors du chargement des ClientEntite "+ex.getMessage());
-            return null;
-        }
-    }
-*/
+public abstract class ClientDAO implements GeneriqueDAO<ClientEntite> 
+{
+ //==========[AJOUTER MESSAGE]==========//
     @Override
-    public boolean insert(ClientEntite obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean insert(ClientEntite obj) 
+    {
+      try 
+            {
+                PreparedStatement prepare=MyConnection.getInstance().prepareStatement("insert into client (nom,login,password,mail,date_de_naissance) values (?,?,?,?,?)");
+                  prepare.setString(1, obj.getNom());
+                  prepare.setString(2, obj.getLogin());
+                  prepare.setString(3,obj.getPassword());
+                  prepare.setString(4,obj.getMail());
+                  prepare.setDate(5,obj.getDate_de_naissance());
+                prepare.executeUpdate();
+                return true;
+            } 
+        catch (SQLException ex)
+            {
+                return false;
+            }  
     }
 
     @Override
     public boolean delete(ClientEntite obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try 
+                {
+                    PreparedStatement prepare=MyConnection.getInstance().prepareStatement("delete from client where id_client='"+obj.getId_Client()+"'");
+                    prepare.executeUpdate();
+                    System.out.println("Delete ValidÃ©");
+                    return true;
+                }
+            catch (SQLException ex) 
+                {
+                    System.out.println("Erreur de delete");
+                    return false;
+                }
     }
 
     @Override
-    public boolean update(ClientEntite obj1, ClientEntite obj2) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public abstract boolean update(ClientEntite obj1, ClientEntite obj2);
 
     @Override
     public ClientEntite find(ClientEntite obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         try
+                {
+                    Statement st = MyConnection.getInstance().createStatement();
+                    ResultSet res =st.executeQuery("select * from client where id_client='"+obj.getId_Client()+"'");
+                    res.next();
+                    ClientEntite m=new ClientEntite ( res.getString(1), res.getString(2), res.getString(3), res.getString(4),res.getDate(5));
+                    return m;
+                }  
+            catch (SQLException ex)
+                {
+                    System.out.println("Non valider");
+                    return null;
+                }
     }
-
-       public List listfind(ClientEntite obj) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
- 
+    
+    public List listFind() throws SQLException 
+        {
+        Statement st = MyConnection.getInstance().createStatement();
+        ResultSet res=st.executeQuery("select * from Message");
+        List<ClientEntite> liste=new ArrayList<ClientEntite>();
+        while(res.next())
+            {
+                ClientEntite e=new ClientEntite( res.getString(1), res.getString(2), res.getString(3), res.getString(4),res.getDate(5));
+                liste.add(e);
+            }
+        return liste;  
+        }
+    
     
 }
-
-    
-

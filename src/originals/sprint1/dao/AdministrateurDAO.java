@@ -24,7 +24,7 @@ public class AdministrateurDAO implements GeneriqueDAO<AdministrateurEntite>{
     @Override
     public boolean insert(AdministrateurEntite obj) {
              try {
-          PreparedStatement prepare=MyConnection.getInstance().prepareStatement("insert into Administrateur (Login, Pwd) values (?,?) ");
+          PreparedStatement prepare=MyConnection.getInstance().prepareStatement("insert into administrateur (login, pwd) values (?,?) ");
           prepare.setString(1, obj.getLogin());
           prepare.setString(2, obj.getPassword());
          // prepare.setDate(1, obj.getDate_Expiration());
@@ -49,7 +49,7 @@ public class AdministrateurDAO implements GeneriqueDAO<AdministrateurEntite>{
     public boolean update(AdministrateurEntite obj1, AdministrateurEntite obj2) {
             try {
 
-        PreparedStatement prepare=MyConnection.getInstance().prepareStatement("UPDATE Administrateur SET Pwd='"+obj2.getPassword()+"';");
+        PreparedStatement prepare=MyConnection.getInstance().prepareStatement("UPDATE administrateur SET pwd='"+obj2.getPassword()+"';");
 
         prepare.executeUpdate();
 

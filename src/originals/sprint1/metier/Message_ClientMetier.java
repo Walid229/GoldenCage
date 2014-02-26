@@ -6,29 +6,23 @@
 
 package originals.sprint1.metier;
 
-import originals.sprint1.dao.ClientDAO;
-import originals.sprint1.entities.ClientEntite;
+import originals.sprint1.dao.Message_ClientDAO;
+import originals.sprint1.entities.Message_ClientEntite;
 import originals.sprint1.util.MyConnection;
 
 /**
  *
  * @author user
  */
-public class ClientMetier {
+public class Message_ClientMetier {
     MyConnection cnx = new MyConnection();
-    ClientEntite abnEnt = new ClientEntite();
-   // ClientDAO abnDao = new ClientDAO();
+    Message_ClientEntite abnEnt = new Message_ClientEntite();
+    Message_ClientDAO abnDao = new Message_ClientDAO();
     
-    public void ajouterClient(){
+    public void envoieMessage(){
         
     }
-    public void verifierClient(){
-        
-    }
-    public void bannirClient(){
-        
-    }
-    public void miseAjourClient(){
+    public void afficheMessage(){
         
     }
 }

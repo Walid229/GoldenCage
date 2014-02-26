@@ -22,7 +22,33 @@ import originals.sprint1.util.MyConnection;
  * @author user
  */
 public class CommentaireDAO implements GeneriqueDAO<CommentaireEntite>{
-   /* public void AjoutComm(CommentaireEntite a){
+  
+
+    @Override
+    public boolean insert(CommentaireEntite obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean delete(CommentaireEntite obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean update(CommentaireEntite obj1, CommentaireEntite obj2) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public CommentaireEntite find(CommentaireEntite obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
+    public List listfind(CommentaireEntite obj) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+     /* public void AjoutComm(CommentaireEntite a){
 
    
 
@@ -123,30 +149,4 @@ public class CommentaireDAO implements GeneriqueDAO<CommentaireEntite>{
             return null;
         }
     }*/
-
-    @Override
-    public boolean insert(CommentaireEntite obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean delete(CommentaireEntite obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean update(CommentaireEntite obj1, CommentaireEntite obj2) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public CommentaireEntite find(CommentaireEntite obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
-    public List listfind(CommentaireEntite obj) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }

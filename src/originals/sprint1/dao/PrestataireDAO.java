@@ -6,18 +6,12 @@ package originals.sprint1.dao;
 
 
 import java.awt.Image;
-import java.awt.image.RenderedImage;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import javax.imageio.ImageIO;
-import originals.sprint1.entities.AbonnementEntite;
 import originals.sprint1.entities.PrestataireEntite;
 import originals.sprint1.util.MyConnection;
 
@@ -31,7 +25,7 @@ public class PrestataireDAO implements GeneriqueDAO<PrestataireEntite> {
     @Override
     public boolean insert(PrestataireEntite obj) {
         try {
-          PreparedStatement prepare=MyConnection.getInstance().prepareStatement("insert into Prestataire (Nom, Telephone, Addresse, Email, Login, Mdp, Evaluation) values (?,?,?,?,?,?,?) ");
+          PreparedStatement prepare=MyConnection.getInstance().prepareStatement("insert into prestataire (nom, login, pwd, tel, addresse, mail, evaluation) values (?,?,?,?,?,?,?) ");
           
           prepare.setString(1, obj.getNom());
           prepare.setString(2, obj.getTelephone());
@@ -58,7 +52,7 @@ public class PrestataireDAO implements GeneriqueDAO<PrestataireEntite> {
     @Override
     public boolean delete(PrestataireEntite obj) {
 try {
-          PreparedStatement prepare=MyConnection.getInstance().prepareStatement("delete from Prestataire where Id_Prest=1");
+          PreparedStatement prepare=MyConnection.getInstance().prepareStatement("delete from prestataire where id_prestataire=1");
           prepare.executeUpdate();
           System.out.println("Delete Validé");
           return true;
@@ -73,7 +67,7 @@ try {
     public boolean update(PrestataireEntite obj1, PrestataireEntite obj2) {
              try {
 
-        PreparedStatement prepare=MyConnection.getInstance().prepareStatement("UPDATE Prestataire SET Telephone='"+obj2.getTelephone()+"';");
+        PreparedStatement prepare=MyConnection.getInstance().prepareStatement("UPDATE prestataire SET tel='"+obj2.getTelephone()+"';");
 
         prepare.executeUpdate();
 
@@ -92,7 +86,7 @@ try {
 
             st=MyConnection.getInstance().createStatement();
             
-            ResultSet res =st.executeQuery("select * from Prestataire where Id_Prest=2");
+            ResultSet res =st.executeQuery("select * from prestataire where id_prestataire=2");
            
             res.next();
 
@@ -107,9 +101,38 @@ try {
             System.out.println("Non Trouver"+ex.getMessage());
             return null;
         }
+    }
         
         
-        
+        public List<PrestataireEntite> DisplayAllPrestataire (){
+
+
+        List<PrestataireEntite> listePrest = new ArrayList<PrestataireEntite>();
+
+        String requete = "select * from prestataire";
+        try {
+           Statement statement = MyConnection.getInstance()
+                   .createStatement();
+            ResultSet resultat = statement.executeQuery(requete);
+            PrestataireDAO presDAO = new PrestataireDAO();
+            while(resultat.next()){
+                PrestataireEntite prestE =new PrestataireEntite();
+                prestE.setNom(resultat.getString(1));
+                prestE.setLogin(resultat.getString(2));
+                prestE.setMdp(resultat.getString(3));
+                prestE.setAddresse(resultat.getString(4));
+                prestE.setEmail(resultat.getString(5));
+                prestE.setTelephone(resultat.getString(6));
+
+                listePrest.add(prestE);
+            }
+            return listePrest;
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors du chargement des prestataires "+ex.getMessage());
+            return null;
+        }
+    }
         
         
         
@@ -242,4 +265,4 @@ try {
     }
 
 */
-}
+

@@ -19,7 +19,7 @@ public class TestClient {
      public static void main(String[] args){
         MyConnection cnx = new MyConnection();
         ClientEntite cli= new ClientEntite();
-        ClientDAO cliDao = new ClientDAO();
+        //ClientDAO cliDao = new ClientDAO();
         
      
 }
