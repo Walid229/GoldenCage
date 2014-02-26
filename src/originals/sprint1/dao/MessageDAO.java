@@ -16,7 +16,7 @@ import originals.sprint1.util.MyConnection;
  *
  * @author user
  */
-public class MessageDAO extends GeneriqueDAO<MessageEntite>{
+public class MessageDAO implements GeneriqueDAO<MessageEntite>{
 
     @Override
     public boolean insert(MessageEntite obj) {

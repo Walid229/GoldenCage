@@ -25,7 +25,7 @@ import originals.sprint1.util.MyConnection;
  *test
  * @author user
  */
-public class PrestataireDAO extends GeneriqueDAO<PrestataireEntite> {
+public class PrestataireDAO implements GeneriqueDAO<PrestataireEntite> {
     Statement st ;
     Image img;
     @Override

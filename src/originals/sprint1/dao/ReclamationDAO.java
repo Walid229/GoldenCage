@@ -14,7 +14,7 @@ import originals.sprint1.entities.ReclamationEntite;
  *
  * @author user
  */
-public class ReclamationDAO extends GeneriqueDAO<ReclamationEntite>{
+public class ReclamationDAO implements GeneriqueDAO<ReclamationEntite>{
 
     @Override
     public boolean insert(ReclamationEntite obj) {

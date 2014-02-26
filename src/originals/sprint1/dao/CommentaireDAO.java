@@ -21,7 +21,7 @@ import originals.sprint1.util.MyConnection;
  *
  * @author user
  */
-public class CommentaireDAO extends GeneriqueDAO<CommentaireEntite>{
+public class CommentaireDAO implements GeneriqueDAO<CommentaireEntite>{
    /* public void AjoutComm(CommentaireEntite a){
 
    

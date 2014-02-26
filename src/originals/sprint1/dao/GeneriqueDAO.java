@@ -7,7 +7,7 @@ package originals.sprint1.dao;
  *
  * @author user
  */
-public abstract  class GeneriqueDAO <T>{
+public interface GeneriqueDAO <T>{
     
 
    /*public Connection connect()
