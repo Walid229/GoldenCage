@@ -6,8 +6,8 @@
 
 package originals.sprint1.metier;
 
-import originals.sprint1.dao.MessageDAO;
-import originals.sprint1.entities.MessageEntite;
+import originals.sprint1.dao.Message_ClientDAO;
+import originals.sprint1.entities.Message_ClientEntite;
 import originals.sprint1.util.MyConnection;
 
 /**
@@ -16,7 +16,13 @@ import originals.sprint1.util.MyConnection;
  */
 public class MessageMetier {
     MyConnection cnx = new MyConnection();
-    MessageEntite abnEnt = new MessageEntite();
-    MessageDAO abnDao = new MessageDAO();
+    Message_ClientEntite abnEnt = new Message_ClientEntite();
+    Message_ClientDAO abnDao = new Message_ClientDAO();
     
+    public void envoieMessage(){
+        
+    }
+    public void afficheMessage(){
+        
+    }
 }

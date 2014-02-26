@@ -6,8 +6,8 @@
 
 package originals.sprint1.metier;
 
-import originals.sprint1.dao.ReclamationDAO;
-import originals.sprint1.entities.ReclamationEntite;
+import originals.sprint1.dao.Reclamation_ClientDAO;
+import originals.sprint1.entities.Reclamation_ClientEntite;
 import originals.sprint1.util.MyConnection;
 
 /**
@@ -16,7 +16,16 @@ import originals.sprint1.util.MyConnection;
  */
 public class ReclamationMetier {
     MyConnection cnx = new MyConnection();
-    ReclamationEntite abnEnt = new ReclamationEntite();
-    ReclamationDAO abnDao = new ReclamationDAO();
+    Reclamation_ClientEntite abnEnt = new Reclamation_ClientEntite();
+    Reclamation_ClientDAO abnDao = new Reclamation_ClientDAO();
     
+    public void consulterReclamation(){
+        
+    }
+    public void envoyerReclamation(){
+        
+    }
+    public void changerStatutReclamation(){
+        
+    }
 }

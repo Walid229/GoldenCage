@@ -17,6 +17,18 @@ import originals.sprint1.util.MyConnection;
 public class ClientMetier {
     MyConnection cnx = new MyConnection();
     ClientEntite abnEnt = new ClientEntite();
-    ClientDAO abnDao = new ClientDAO();
+   // ClientDAO abnDao = new ClientDAO();
     
+    public void ajouterClient(){
+        
+    }
+    public void verifierClient(){
+        
+    }
+    public void bannirClient(){
+        
+    }
+    public void miseAjourClient(){
+        
+    }
 }
