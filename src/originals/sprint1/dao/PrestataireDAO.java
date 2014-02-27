@@ -20,7 +20,7 @@ import originals.sprint1.util.MyConnection;
  * @author user
  */
 public class PrestataireDAO implements GeneriqueDAO<PrestataireEntite> {
-    Statement st ;
+   // Statement st ;
     Image img;
     @Override
     public boolean insert(PrestataireEntite obj) {
@@ -83,7 +83,7 @@ try {
         try
         {
 
-            st=MyConnection.getInstance().createStatement();
+            Statement st=MyConnection.getInstance().createStatement();
             ResultSet res = null;
             switch (type)
                     {
@@ -147,14 +147,15 @@ try {
     public PrestataireEntite find(PrestataireEntite obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    
      public PrestataireEntite findAuth(String login,String mdp)
     {
-
            try
         {
 
-            st=MyConnection.getInstance().createStatement();
-            ResultSet res =st.executeQuery("select * from etudiant where login='"+login+"' and pwd='"+mdp+"';");
+           Statement st=MyConnection.getInstance().createStatement();
+            ResultSet res =st.executeQuery("select * from prestataire where login='"+login+"' and pwd='"+mdp+"';");
 
             PrestataireEntite e=null;
             while (res.next())
@@ -166,7 +167,7 @@ try {
 
         catch (SQLException ex)
         {
-            System.out.println("Non valider");
+            System.out.println("Non valider"+ex.getMessage());
             return null;
         }
         

@@ -40,6 +40,6 @@ public class AdministrateurMetier {
                 a.setVisible(true);
                 
         }
-        else JOptionPane.showMessageDialog(null,"Administrateur: veuilez verifier votre Client  ");}
+        else JOptionPane.showMessageDialog(null,"Administrateur: veuilez verifier votre login et mot de passe ");}
     
 }

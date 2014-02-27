@@ -215,7 +215,7 @@ try
     
         
         //this.setVisible(false);
-        }catch(Exception e){JOptionPane.showMessageDialog(null,"Login ou Mot de passe incorrecte");}
+        }catch(Exception e){JOptionPane.showMessageDialog(null,"Login ou Mot de passe incorrecte ");}
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

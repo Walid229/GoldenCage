@@ -34,7 +34,7 @@ public class ClientMetier {
                 a.setVisible(true);
                 
         }
-        else JOptionPane.showMessageDialog(null,"Votre login et mot de passe sont incorrecte ");}
+        else JOptionPane.showMessageDialog(null,"Client; Votre login et mot de passe sont incorrecte ");}
     public void bannirClient(){
         
     }
