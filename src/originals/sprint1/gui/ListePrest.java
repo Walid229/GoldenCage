@@ -21,8 +21,8 @@ public class ListePrest extends AbstractTableModel{
    
             
     public ListePrest(){
-        PrestataireDAO prestd= new PrestataireDAO();
-        prestListe = prestd.DisplayAllPrestataire();
+          PrestataireDAO prestd= new PrestataireDAO();
+        //prestListe = prestd.DisplayAllPrestataire();
              
     }
     

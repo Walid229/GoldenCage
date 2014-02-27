@@ -3,6 +3,9 @@
  * and open the template in the editor.
  */
 package originals.sprint1.dao;
+
+import java.sql.ResultSet;
+
 /**
  *
  * @author user

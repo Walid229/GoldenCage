@@ -6,10 +6,19 @@
 
 package originals.sprint1.metier;
 
+import java.sql.ResultSet;
+import originals.sprint1.dao.Reclamation_PrestataireDAO;
+
 /**
  *
  * @author user
  */
 public class Reclamation_PrestataireMetier {
+    
+    public ResultSet RechercherTous()
+    {
+        Reclamation_PrestataireDAO rec = new Reclamation_PrestataireDAO();
+        return rec.DisplayAllReclamation();
+    }
     
 }

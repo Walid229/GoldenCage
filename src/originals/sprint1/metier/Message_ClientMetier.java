@@ -6,18 +6,20 @@
 
 package originals.sprint1.metier;
 
+import java.sql.ResultSet;
 import originals.sprint1.dao.Message_ClientDAO;
-import originals.sprint1.entities.Message_ClientEntite;
-import originals.sprint1.util.MyConnection;
 
 /**
  *
  * @author user
  */
 public class Message_ClientMetier {
-    MyConnection cnx = new MyConnection();
-    Message_ClientEntite abnEnt = new Message_ClientEntite();
-    Message_ClientDAO abnDao = new Message_ClientDAO();
+    
+    public ResultSet RechercherTous(){
+        Message_ClientDAO msg = new Message_ClientDAO();
+        return msg.listFind();
+    }
+            
     
     public void envoieMessage(){
         

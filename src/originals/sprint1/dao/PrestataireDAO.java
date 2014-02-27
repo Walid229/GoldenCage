@@ -78,21 +78,31 @@ try {
         }
     }
 
-    @Override
-    public PrestataireEntite find(PrestataireEntite obj) {
+    public ResultSet find(String recherche, int type) {
             
         try
         {
 
             st=MyConnection.getInstance().createStatement();
-            
-            ResultSet res =st.executeQuery("select * from prestataire where id_prestataire=2");
+            ResultSet res = null;
+            switch (type)
+                    {
+                    case 0:
+                        res =st.executeQuery("select * from prestataire where nom='"+ recherche+ "'");
+                        break;
+                    case 1:
+                        res =st.executeQuery("select * from prestataire where addresse='" + recherche+"'");
+                        break;
+                    case 2:
+                        res =st.executeQuery("select * from prestataire where id_prestataire='" + recherche+"'");
+                        break;
+                    }
            
-            res.next();
-
-            PrestataireEntite e=new PrestataireEntite(res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getFloat(6), res.getString(7), res.getString(8));
-                System.out.println("Trouver :"+e.toString());
-            return e;
+//            res.next();
+//
+//            PrestataireEntite e=new PrestataireEntite(res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getFloat(6), res.getString(7), res.getString(8));
+//                System.out.println("Trouver :"+e.toString());
+            return res;
             
         }
 
@@ -104,34 +114,38 @@ try {
     }
         
         
-        public List<PrestataireEntite> DisplayAllPrestataire (){
+        public ResultSet DisplayAllPrestataire (){
 
 
         List<PrestataireEntite> listePrest = new ArrayList<PrestataireEntite>();
 
-        String requete = "select * from prestataire";
+        String requete = "select id_prestataire as Identifiant, nom as Nom, login as Login, pwd as 'Mot de Passe', tel as Telephone,addresse as Addresse,mail as Email, evaluation as Evaluation from prestataire ";
         try {
-           Statement statement = MyConnection.getInstance()
-                   .createStatement();
+           Statement statement = MyConnection.getInstance().createStatement();
             ResultSet resultat = statement.executeQuery(requete);
-            PrestataireDAO presDAO = new PrestataireDAO();
-            while(resultat.next()){
-                PrestataireEntite prestE =new PrestataireEntite();
-                prestE.setNom(resultat.getString(1));
-                prestE.setLogin(resultat.getString(2));
-                prestE.setMdp(resultat.getString(3));
-                prestE.setAddresse(resultat.getString(4));
-                prestE.setEmail(resultat.getString(5));
-                prestE.setTelephone(resultat.getString(6));
-
-                listePrest.add(prestE);
-            }
-            return listePrest;
+//            PrestataireDAO presDAO = new PrestataireDAO();
+//            while(resultat.next()){
+//                PrestataireEntite prestE =new PrestataireEntite();
+//                prestE.setNom(resultat.getString(1));
+//                prestE.setLogin(resultat.getString(2));
+//                prestE.setMdp(resultat.getString(3));
+//                prestE.setAddresse(resultat.getString(4));
+//                prestE.setEmail(resultat.getString(5));
+//                prestE.setTelephone(resultat.getString(6));
+//
+//                listePrest.add(prestE);
+//            }
+            return resultat;
         } catch (SQLException ex) {
            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("erreur lors du chargement des prestataires "+ex.getMessage());
             return null;
         }
+    }
+
+    @Override
+    public PrestataireEntite find(PrestataireEntite obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
         
         

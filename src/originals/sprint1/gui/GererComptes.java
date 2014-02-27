@@ -4,22 +4,26 @@
  */
 package originals.sprint1.gui;
 
+import java.util.Date;
 import com.toedter.calendar.JCalendar;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
-import java.sql.*;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils; //connection BD
 import originals.sprint1.entities.PrestataireEntite;
+import originals.sprint1.metier.AbonnementMetier;
+import originals.sprint1.metier.Message_ClientMetier;
+import originals.sprint1.metier.Message_PrestataireMetier;
 import originals.sprint1.metier.PrestataireMetier;
-import originals.sprint1.util.MyConnection;
-
+import originals.sprint1.metier.Reclamation_ClientMetier;
+import originals.sprint1.metier.Reclamation_PrestataireMetier;
 /**
  *
  * @author user
@@ -53,15 +57,46 @@ public class GererComptes extends javax.swing.JFrame {
      */
     public GererComptes() {
         initComponents();
-        conn=MyConnection.getInstance();
+       // conn=MyConnection.getInstance();
        // update_table();
-        prestataire_table();
-        
-        
+        //prestataire_table();
+        getAllPrestaire();
+        GetAllData();
        
     }
     
-    private void update_table()
+    private void getAllPrestaire(){
+        
+        PrestataireMetier pres = new PrestataireMetier();
+        prestataire_table.setModel(DbUtils.resultSetToTableModel(pres.rechercherTous()));
+       // prestataire_table.setModel()
+        
+    }
+    
+    private void GetAllData()
+    {
+    
+         Reclamation_ClientMetier rec = new Reclamation_ClientMetier();
+         notif_client_Table.setModel(DbUtils.resultSetToTableModel(rec.consulterReclamation()));
+         
+         Message_ClientMetier msgClient = new Message_ClientMetier();
+         message_client_table.setModel(DbUtils.resultSetToTableModel(msgClient.RechercherTous()));
+         
+         AbonnementMetier abnM = new AbonnementMetier();
+         abonnement_table.setModel(DbUtils.resultSetToTableModel(abnM.RechercheTous()));
+         
+         Reclamation_PrestataireMetier recP = new Reclamation_PrestataireMetier();
+         notif_prest_Table.setModel(DbUtils.resultSetToTableModel(recP.RechercherTous()));
+         
+         Message_PrestataireMetier msgP = new Message_PrestataireMetier();
+         message_prest_table.setModel(DbUtils.resultSetToTableModel(msgP.Message_PrestataireDAO()));
+         
+         
+         
+         
+    }
+    
+   /* private void update_table()
     {
         try {
             String sql="select id_reclamation as Identifiant ,id_client as Client, reclamation as Reclamation, statut as Statut from reclamation_client ";
@@ -89,20 +124,7 @@ public class GererComptes extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(GererComptes.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-    
-     private void prestataire_table()
-    {
-        try {
-            String sql="select id_prestataire as Identifiant, nom as Nom, login as Login, pwd as Password, tel as Telephone,addresse as Addresse,mail as Email, evaluation as Evaluation from prestataire ";
-            pst=conn.prepareStatement(sql);
-            rs=pst.executeQuery();
-            pst=conn.prepareStatement(sql);
-            prestataire_table.setModel(DbUtils.resultSetToTableModel(rs));
-        } catch (SQLException ex) {
-            Logger.getLogger(GererComptes.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+    }*/
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -141,10 +163,10 @@ public class GererComptes extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox6 = new javax.swing.JCheckBox();
-        jCheckBox5 = new javax.swing.JCheckBox();
-        jTextField1 = new javax.swing.JTextField();
+        cbNom = new javax.swing.JCheckBox();
+        cbCateg = new javax.swing.JCheckBox();
+        cbLocalisation = new javax.swing.JCheckBox();
+        tfRecherch = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jScrollPane14 = new javax.swing.JScrollPane();
         jScrollPane12 = new javax.swing.JScrollPane();
@@ -156,6 +178,8 @@ public class GererComptes extends javax.swing.JFrame {
         label_details = new javax.swing.JLabel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        jCalendar1 = new com.toedter.calendar.JCalendar();
+        jButton5 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -310,7 +334,7 @@ public class GererComptes extends javax.swing.JFrame {
                         .addComponent(jLabel13)
                         .addComponent(jLabel9)
                         .addComponent(message_tab1)))
-                .addGap(874, 1007, Short.MAX_VALUE))
+                .addGap(874, 1023, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -345,33 +369,38 @@ public class GererComptes extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
         jLabel14.setText("Selectionez votre critère de recherche ");
 
-        jCheckBox3.setText("nom");
-        jCheckBox3.addActionListener(new java.awt.event.ActionListener() {
+        cbNom.setText("nom");
+        cbNom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox3ActionPerformed(evt);
+                cbNomActionPerformed(evt);
             }
         });
 
-        jCheckBox6.setText("catégorie");
-        jCheckBox6.addActionListener(new java.awt.event.ActionListener() {
+        cbCateg.setText("catégorie");
+        cbCateg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox6ActionPerformed(evt);
+                cbCategActionPerformed(evt);
             }
         });
 
-        jCheckBox5.setText("localisation");
+        cbLocalisation.setText("localisation");
 
-        jTextField1.setBackground(new java.awt.Color(204, 204, 255));
-        jTextField1.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField1.setBorder(null);
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        tfRecherch.setBackground(new java.awt.Color(204, 204, 255));
+        tfRecherch.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        tfRecherch.setForeground(new java.awt.Color(51, 51, 51));
+        tfRecherch.setBorder(null);
+        tfRecherch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                tfRecherchActionPerformed(evt);
             }
         });
 
         jButton1.setText("Go");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         prestataire_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -426,6 +455,16 @@ public class GererComptes extends javax.swing.JFrame {
 
         label_details.setText("Les details de l'abonnement");
 
+        jCalendar1.setTodayButtonVisible(true);
+        jCalendar1.setVisible(false);
+
+        jButton5.setText("Valider");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -438,13 +477,13 @@ public class GererComptes extends javax.swing.JFrame {
                         .addGap(30, 30, 30)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jCheckBox3)
+                                .addComponent(cbNom)
                                 .addGap(18, 18, 18)
-                                .addComponent(jCheckBox6)
+                                .addComponent(cbCateg)
                                 .addGap(18, 18, 18)
-                                .addComponent(jCheckBox5))
+                                .addComponent(cbLocalisation))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tfRecherch, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton1)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -452,7 +491,9 @@ public class GererComptes extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jScrollPane14, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 877, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 893, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jCalendar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 686, Short.MAX_VALUE)
                         .addComponent(jButton3)
                         .addGap(30, 30, 30))
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -460,19 +501,23 @@ public class GererComptes extends javax.swing.JFrame {
                             .addComponent(label_details)
                             .addComponent(jLabel15))
                         .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addComponent(jButton5)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(87, 87, 87)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox6)
-                    .addComponent(jCheckBox5)
+                    .addComponent(cbCateg)
+                    .addComponent(cbLocalisation)
                     .addComponent(jLabel14)
-                    .addComponent(jCheckBox3))
+                    .addComponent(cbNom))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfRecherch, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -480,14 +525,19 @@ public class GererComptes extends javax.swing.JFrame {
                         .addComponent(jButton3))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(75, 75, 75)
-                        .addComponent(jLabel15)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(label_details)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(629, Short.MAX_VALUE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jCalendar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel15)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26)
+                                .addComponent(label_details)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(18, 18, 18)
+                .addComponent(jButton5)
+                .addContainerGap(591, Short.MAX_VALUE))
         );
 
         jTabbedPane4.addTab("Gérer les Comptes", jPanel2);
@@ -496,11 +546,11 @@ public class GererComptes extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1919, Short.MAX_VALUE)
+            .addGap(0, 1937, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1210, Short.MAX_VALUE)
+            .addGap(0, 1223, Short.MAX_VALUE)
         );
 
         jTabbedPane4.addTab("Gérer les réclamations", jPanel4);
@@ -509,11 +559,11 @@ public class GererComptes extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1919, Short.MAX_VALUE)
+            .addGap(0, 1937, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1210, Short.MAX_VALUE)
+            .addGap(0, 1223, Short.MAX_VALUE)
         );
 
         jTabbedPane4.addTab("Statistiques", jPanel5);
@@ -590,7 +640,7 @@ public class GererComptes extends javax.swing.JFrame {
                 .addContainerGap(1260, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                    .addContainerGap(1530, Short.MAX_VALUE)
+                    .addContainerGap(1548, Short.MAX_VALUE)
                     .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(277, 277, 277)))
         );
@@ -626,12 +676,12 @@ public class GererComptes extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(jButton4)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 751, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 752, Short.MAX_VALUE)
                 .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                    .addContainerGap(1117, Short.MAX_VALUE)
+                    .addContainerGap(1130, Short.MAX_VALUE)
                     .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(44, 44, 44)))
         );
@@ -655,7 +705,7 @@ public class GererComptes extends javax.swing.JFrame {
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGap(769, 769, 769)
                         .addComponent(jButton2)))
-                .addContainerGap(1044, Short.MAX_VALUE))
+                .addContainerGap(1062, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -664,7 +714,7 @@ public class GererComptes extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(jButton2)
-                .addContainerGap(863, Short.MAX_VALUE))
+                .addContainerGap(874, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -703,9 +753,9 @@ public class GererComptes extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(titre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(logout))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 869, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -785,17 +835,17 @@ public class GererComptes extends javax.swing.JFrame {
         }*/
     }//GEN-LAST:event_notif_client_TableMouseClicked
 
-    private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
+    private void cbNomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbNomActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox3ActionPerformed
+    }//GEN-LAST:event_cbNomActionPerformed
 
-    private void jCheckBox6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox6ActionPerformed
+    private void cbCategActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCategActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox6ActionPerformed
+    }//GEN-LAST:event_cbCategActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void tfRecherchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfRecherchActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_tfRecherchActionPerformed
 
     private void prestataire_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prestataire_tableMouseClicked
         // TODO add your handling code here:
@@ -805,12 +855,24 @@ public class GererComptes extends javax.swing.JFrame {
             String prest_click=(prestataire_table.getModel().getValueAt(row, 0).toString());
             
             System.out.println("la veleuur est  "+prest_click);
-            String sql="select id_prestataire as Identifiant, date as Expire, duree as Durée from abonnement where id_prestataire='"+prest_click+"' ";
-            pst=conn.prepareStatement(sql);
-            rs=pst.executeQuery();
-            System.out.println("la veleuur est  "+sql);
             
-             compte_table.setModel(DbUtils.resultSetToTableModel(rs));
+              AbonnementMetier abnM = new AbonnementMetier();
+              rs = abnM.TrouverParId(prest_click);
+              
+              compte_table.setModel(DbUtils.resultSetToTableModel(rs));
+            
+//            String sql="select id_prestataire as Identifiant, date as Expire, duree as Durée from abonnement where id_prestataire="+prest_click;
+//            
+//            System.out.println(" sql"+sql);
+//            pst=conn.prepareStatement(sql);
+//            System.out.println(" sql"+sql);
+//            rs=pst.executeQuery();
+//            System.out.println(" sql"+sql);
+//            
+//            
+//            System.out.println("la veleuur est  "+rs);
+//            
+//             compte_table.setModel(DbUtils.resultSetToTableModel(rs));
             
            
 
@@ -822,9 +884,63 @@ public class GererComptes extends javax.swing.JFrame {
 
     private void compte_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_compte_tableMouseClicked
 
+        int row=compte_table.getSelectedRow();
+        String date=(compte_table.getModel().getValueAt(row, 2).toString());
+
         
-        // TODO add your handling code here:
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date d = sdf.parse(date);
+            jCalendar1.setVisible(true);
+            jCalendar1.setDate(d);
+        } catch (ParseException ex) {
+            Logger.getLogger(GererComptes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+
     }//GEN-LAST:event_compte_tableMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+        String recherch = tfRecherch.getText();
+        
+        System.out.println(cbNom.isEnabled());
+        
+        if (cbNom.isSelected()) {
+            System.out.println("rst");
+            PrestataireMetier pres = new PrestataireMetier();
+            ResultSet rst = pres.find(recherch, 0);
+            
+            
+            prestataire_table.setModel(DbUtils.resultSetToTableModel(rst));
+            System.out.println("rst");
+            
+        }
+        
+        if (cbLocalisation.isSelected()) {
+             System.out.println("rst");
+            PrestataireMetier pres = new PrestataireMetier();
+            ResultSet rst = pres.find(recherch, 1);
+            prestataire_table.setModel(DbUtils.resultSetToTableModel(rst));
+             System.out.println("rst");
+            
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        int row=compte_table.getSelectedRow();
+        String idprest=(compte_table.getModel().getValueAt(row, 1).toString());
+        Date date = jCalendar1.getDate();
+        
+        AbonnementMetier abnM = new AbonnementMetier();
+        boolean test = abnM.MajDate(date, idprest);
+        
+        
+        System.out.println(test);
+        
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     
     /**
@@ -866,16 +982,18 @@ public class GererComptes extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable abonnement_table;
+    private javax.swing.JCheckBox cbCateg;
+    private javax.swing.JCheckBox cbLocalisation;
+    private javax.swing.JCheckBox cbNom;
     private javax.swing.JTable compte_table;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox5;
-    private javax.swing.JCheckBox jCheckBox6;
+    private com.toedter.calendar.JCalendar jCalendar1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
@@ -915,7 +1033,6 @@ public class GererComptes extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane4;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
@@ -932,6 +1049,7 @@ public class GererComptes extends javax.swing.JFrame {
     private javax.swing.JTable notif_client_Table;
     private javax.swing.JTable notif_prest_Table;
     private javax.swing.JTable prestataire_table;
+    private javax.swing.JTextField tfRecherch;
     private javax.swing.JLabel titre;
     // End of variables declaration//GEN-END:variables
 }

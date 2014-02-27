@@ -22,22 +22,21 @@ import originals.sprint1.util.MyConnection;
 public class Reclamation_ClientDAO implements GeneriqueDAO<Reclamation_ClientEntite> {
     Statement st ;
     
-      public List<Reclamation_ClientEntite> DisplayAllReclamation (){
+      public ResultSet DisplayAllReclamation (){
         List<Reclamation_ClientEntite> listeReclamation = new ArrayList<Reclamation_ClientEntite>();
 
-        String requete = "select * from reclamation_client";
+        String requete = "select id_reclamation as Identifiant ,id_client as Client, reclamation as Reclamation, statut as Statut from reclamation_client";
         try {
-           Statement statement = MyConnection.getInstance()
-                   .createStatement();
+           Statement statement = MyConnection.getInstance().createStatement();
             ResultSet resultat = statement.executeQuery(requete);
-
-            while(resultat.next()){
-                Reclamation_ClientEntite r =new Reclamation_ClientEntite();
-                r.setReclamation_text(resultat.getString(2));
-                r.setStatut(resultat.getInt(3));
-               listeReclamation.add(r);
-               }
-            return listeReclamation;
+//
+//            while(resultat.next()){
+//                Reclamation_ClientEntite r =new Reclamation_ClientEntite();
+//                r.setReclamation_text(resultat.getString(2));
+//                r.setStatut(resultat.getInt(3));
+//               listeReclamation.add(r);
+//               }
+            return resultat;
         } catch (SQLException ex) {
            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("erreur lors du chargement des depots "+ex.getMessage());

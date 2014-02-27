@@ -6,21 +6,19 @@
 
 package originals.sprint1.metier;
 
+import java.sql.ResultSet;
 import originals.sprint1.dao.Reclamation_ClientDAO;
-import originals.sprint1.entities.Reclamation_ClientEntite;
-import originals.sprint1.util.MyConnection;
 
 /**
  *
  * @author user
  */
 public class Reclamation_ClientMetier {
-    MyConnection cnx = new MyConnection();
-    Reclamation_ClientEntite abnEnt = new Reclamation_ClientEntite();
-    Reclamation_ClientDAO abnDao = new Reclamation_ClientDAO();
+
     
-    public void consulterReclamation(){
-        
+    public ResultSet consulterReclamation(){
+        Reclamation_ClientDAO rec = new Reclamation_ClientDAO();
+        return rec.DisplayAllReclamation();
     }
     public void envoyerReclamation(){
         

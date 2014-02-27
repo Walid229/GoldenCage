@@ -12,6 +12,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import originals.sprint1.entities.Message_PrestataireEntite;
 import originals.sprint1.util.MyConnection;
 
@@ -78,17 +80,25 @@ public  class Message_PrestataireDAO implements GeneriqueDAO<Message_Prestataire
                 }
         }
     
-    public List listFind() throws SQLException 
+    public ResultSet listFind()  
         {
-        Statement st = MyConnection.getInstance().createStatement();
-        ResultSet res=st.executeQuery("select * from message_prestataire");
-        List<Message_PrestataireEntite> liste=new ArrayList<Message_PrestataireEntite>();
-        while(res.next())
-            {
-                Message_PrestataireEntite e=new Message_PrestataireEntite( res.getInt(1), res.getInt(2),res.getString(3));
-                liste.add(e);
-            }
-        return liste;  
+        Statement st;
+        try {
+            st = MyConnection.getInstance().createStatement();
+            ResultSet res=st.executeQuery("select id_prestataire as Identifiant, id_administrateur as Administrateur, message as Message from message_prestataire");
+            return res;  
+        } catch (SQLException ex) {
+            Logger.getLogger(Message_PrestataireDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        
+//        List<Message_PrestataireEntite> liste=new ArrayList<Message_PrestataireEntite>();
+//        while(res.next())
+//            {
+//                Message_PrestataireEntite e=new Message_PrestataireEntite( res.getInt(1), res.getInt(2),res.getString(3));
+//                liste.add(e);
+//            }
+        
         }
 
     @Override

@@ -8,10 +8,10 @@ package originals.sprint1.metier;
  * and open the template in the editor.
  */
 
+import java.sql.ResultSet;
+import java.util.Date;
 import originals.sprint1.dao.AbonnementDAO;
-import originals.sprint1.dao.AdministrateurDAO;
 import originals.sprint1.entities.AbonnementEntite;
-import originals.sprint1.util.MyConnection;
 
 /**
  *
@@ -25,6 +25,11 @@ public class AbonnementMetier {
         
         abnDao.insert(abn);
        
+    }
+    
+    public boolean MajDate(Date date, String id){
+        AbonnementDAO abn = new AbonnementDAO();
+        return abn.updateDate(date, id);
     }
     
     public void supprimer(){
@@ -44,6 +49,12 @@ public class AbonnementMetier {
         abnDao.find(abn);
     } 
     
+    public ResultSet RechercheTous(){
+        AbonnementDAO abn = new AbonnementDAO();
+        return abn.findAll();
+    }
+            
+    
     public void mise_a_jour(){
        
         AbonnementEntite abn = new AbonnementEntite();
@@ -51,4 +62,9 @@ public class AbonnementMetier {
 
         abnDao.update(abn, abn);
     } 
+    
+    public ResultSet TrouverParId(String id){
+        AbonnementDAO abn = new AbonnementDAO();
+        return abn.findById(id);
+    }
 }

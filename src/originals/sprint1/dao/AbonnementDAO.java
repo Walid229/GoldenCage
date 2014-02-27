@@ -10,6 +10,9 @@ import java.sql.SQLException;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import originals.sprint1.entities.AbonnementEntite;
 import originals.sprint1.util.MyConnection;
 
@@ -65,6 +68,20 @@ try {
           return false;
         }
     }
+    
+    public boolean updateDate(Date date, String id) {
+         try {
+
+        PreparedStatement prepare=MyConnection.getInstance().prepareStatement("UPDATE abonnement SET date="+date+" where id_prestataire ="+id);
+
+        prepare.executeUpdate();
+
+        return true;
+
+        } catch (SQLException ex) {
+          return false;
+        }
+    }
 
     @Override
     public AbonnementEntite find(AbonnementEntite obj) {
@@ -75,7 +92,7 @@ try {
 
             st=MyConnection.getInstance().createStatement();
             
-            ResultSet res =st.executeQuery("select * from abonnement where id_abonnement=1");
+            ResultSet res =st.executeQuery("select * from abonnement where id_abonnement="+obj.getId_Abonnement());
            
             res.next();
 
@@ -92,6 +109,60 @@ try {
         }
 
     }
+    
+      public ResultSet findById(String id) {
+        
+
+        try
+        {
+
+            st=MyConnection.getInstance().createStatement();
+            
+            ResultSet res =st.executeQuery("select id_prestataire as Prestataire, duree as Durée, date as Date from abonnement where id_prestataire ="+id);
+           
+            return res;
+            
+        }
+
+        catch (SQLException ex)
+        {
+            System.out.println("Non Trouver"+ex.getMessage());
+            return null;
+        }
+
+    }
+    
+     public ResultSet findAll() {
+        
+
+        try
+        {
+
+            st=MyConnection.getInstance().createStatement();
+            //select id_prestataire as Identifiant, nom as Nom, login as Login, pwd as 'Mot de Passe', tel as Telephone,addresse as Addresse,mail as Email, evaluation as Evaluation from prestataire 
+            ResultSet res =st.executeQuery("select id_prestataire as Prestataire, duree as Durée, date as Date from abonnement");
+            
+//            List<AbonnementEntite> lsAbonement = new ArrayList<AbonnementEntite>();
+//
+//             while(res.next())
+//            {
+//                AbonnementEntite e=new AbonnementEntite(res.getInt(0), res.getInt(1), res.getInt(2), res.getDate(3));
+//                System.out.println("Trouver :"+e.toString());
+//                lsAbonement.add(e);
+//            }
+                
+            return res;
+            
+        }
+
+        catch (SQLException ex)
+        {
+            System.out.println("Non Trouver"+ex.getMessage());
+            return null;
+        }
+
+    }
+     
 }
 
    

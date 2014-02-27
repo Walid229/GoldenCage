@@ -4,6 +4,7 @@
  */
 package originals.sprint1.metier;
 
+import java.sql.ResultSet;
 import originals.sprint1.dao.PrestataireDAO;
 import originals.sprint1.entities.PrestataireEntite;
 import originals.sprint1.util.MyConnection;
@@ -44,6 +45,12 @@ public class PrestataireMetier {
      
     }
        
+       public ResultSet rechercherTous()
+       {
+           PrestataireDAO prestDAO = new PrestataireDAO();
+           return prestDAO.DisplayAllPrestataire();
+       }
+       
        public void mise_a_jour(){
         
         PrestataireEntite prest = new PrestataireEntite();
@@ -52,6 +59,11 @@ public class PrestataireMetier {
         
         prestDAO.update(prest, prest);
      
+    }
+
+    public ResultSet find(String recherch, int i) {
+        PrestataireDAO prestDAO = new PrestataireDAO();
+        return prestDAO.find(recherch, i);
     }
     
 }

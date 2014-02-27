@@ -28,6 +28,15 @@ public class AbonnementEntite {
        
    }
 
+    public AbonnementEntite(int id_Abonnement, int id_Prestataire, int duree, Date date) {
+        this.id_Abonnement = id_Abonnement;
+        this.id_Prestataire = id_Prestataire;
+        this.duree = duree;
+        this.date = date;
+    }
+   
+   
+
    public AbonnementEntite(int id_Prest, int duree){
        this.id_Prestataire=id_Prest;
         this.duree = duree;
