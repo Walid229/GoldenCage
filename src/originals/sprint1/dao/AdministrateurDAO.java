@@ -10,7 +10,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import javax.imageio.ImageIO;
 import originals.sprint1.entities.AdministrateurEntite;
 import originals.sprint1.util.MyConnection;
@@ -65,7 +67,30 @@ public class AdministrateurDAO implements GeneriqueDAO<AdministrateurEntite>{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-       
+       public AdministrateurEntite findAuth(String login,String mdp)
+    {
+
+           try
+        {
+            
+            Statement st=MyConnection.getInstance().createStatement();
+            ResultSet res =st.executeQuery("select * from administrateur where login='"+login+"' and pwd='"+mdp+"';");
+
+            AdministrateurEntite e=null;
+            while (res.next())
+            {
+            e=new AdministrateurEntite(res.getString(2), res.getString(3));
+            }
+            return e;
+        }
+
+        catch (SQLException ex)
+        {
+            System.out.println("Non valider"+ex.getMessage());
+            return null;
+        }
+    }
+    }
     
     
     
@@ -87,4 +112,4 @@ public class AdministrateurDAO implements GeneriqueDAO<AdministrateurEntite>{
 
     
     
-}
+

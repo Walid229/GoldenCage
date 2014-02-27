@@ -147,7 +147,30 @@ try {
     public PrestataireEntite find(PrestataireEntite obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+     public PrestataireEntite findAuth(String login,String mdp)
+    {
+
+           try
+        {
+
+            st=MyConnection.getInstance().createStatement();
+            ResultSet res =st.executeQuery("select * from etudiant where login='"+login+"' and pwd='"+mdp+"';");
+
+            PrestataireEntite e=null;
+            while (res.next())
+            {
+            e=new PrestataireEntite( res.getString(2), res.getString(3), res.getString(4),res.getString(5), res.getInt(6), res.getString(7),res.getString(8));
+            }
+            return e;
+        }
+
+        catch (SQLException ex)
+        {
+            System.out.println("Non valider");
+            return null;
+        }
         
+    }    
         
         
         

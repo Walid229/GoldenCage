@@ -20,7 +20,7 @@ import originals.sprint1.util.MyConnection;
  *
  * @author user
  */
-public abstract class ClientDAO implements GeneriqueDAO<ClientEntite> 
+public  class ClientDAO implements GeneriqueDAO<ClientEntite> 
 {
  //==========[AJOUTER MESSAGE]==========//
     @Override
@@ -59,8 +59,7 @@ public abstract class ClientDAO implements GeneriqueDAO<ClientEntite>
                 }
     }
 
-    @Override
-    public abstract boolean update(ClientEntite obj1, ClientEntite obj2);
+    
 
     @Override
     public ClientEntite find(ClientEntite obj) {
@@ -92,5 +91,32 @@ public abstract class ClientDAO implements GeneriqueDAO<ClientEntite>
         return liste;  
         }
     
-    
+     public ClientEntite findAuth(String login,String mdp)
+    {
+
+           try
+        {
+            
+            Statement st=MyConnection.getInstance().createStatement();
+            ResultSet res =st.executeQuery("select * from client where login='"+login+"' and pwd='"+mdp+"';");
+
+            ClientEntite cli=null;
+            while (res.next())
+            {
+            cli=new ClientEntite(res.getString(2), res.getString(3), res.getString(4),res.getString(5), res.getDate(6));
+            }
+            return cli;
+        }
+
+        catch (SQLException ex)
+        {
+            System.out.println("Non valider"+ex.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public boolean update(ClientEntite obj1, ClientEntite obj2) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
