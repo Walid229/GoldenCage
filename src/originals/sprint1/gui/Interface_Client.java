@@ -94,7 +94,7 @@ public class Interface_Client extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(296, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,7 +118,7 @@ public class Interface_Client extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Espace Personnel", jPanel2);
@@ -169,7 +169,7 @@ public class Interface_Client extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(46, 46, 46)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(166, Short.MAX_VALUE))
+                .addContainerGap(162, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,11 +224,9 @@ public class Interface_Client extends javax.swing.JFrame {
             }
         ));
         jScrollPane6.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setMinWidth(100);
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(100);
-            jTable1.getColumnModel().getColumn(0).setMaxWidth(100);
-        }
+        jTable1.getColumnModel().getColumn(0).setMinWidth(100);
+        jTable1.getColumnModel().getColumn(0).setPreferredWidth(100);
+        jTable1.getColumnModel().getColumn(0).setMaxWidth(100);
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel2.setText("Reponse:");
@@ -274,17 +272,15 @@ public class Interface_Client extends javax.swing.JFrame {
             }
         });
         jScrollPane9.setViewportView(jTable2);
-        if (jTable2.getColumnModel().getColumnCount() > 0) {
-            jTable2.getColumnModel().getColumn(1).setMinWidth(65);
-            jTable2.getColumnModel().getColumn(1).setPreferredWidth(65);
-            jTable2.getColumnModel().getColumn(1).setMaxWidth(65);
-            jTable2.getColumnModel().getColumn(2).setMinWidth(65);
-            jTable2.getColumnModel().getColumn(2).setPreferredWidth(65);
-            jTable2.getColumnModel().getColumn(2).setMaxWidth(65);
-            jTable2.getColumnModel().getColumn(3).setMinWidth(65);
-            jTable2.getColumnModel().getColumn(3).setPreferredWidth(65);
-            jTable2.getColumnModel().getColumn(3).setMaxWidth(65);
-        }
+        jTable2.getColumnModel().getColumn(1).setMinWidth(65);
+        jTable2.getColumnModel().getColumn(1).setPreferredWidth(65);
+        jTable2.getColumnModel().getColumn(1).setMaxWidth(65);
+        jTable2.getColumnModel().getColumn(2).setMinWidth(65);
+        jTable2.getColumnModel().getColumn(2).setPreferredWidth(65);
+        jTable2.getColumnModel().getColumn(2).setMaxWidth(65);
+        jTable2.getColumnModel().getColumn(3).setMinWidth(65);
+        jTable2.getColumnModel().getColumn(3).setPreferredWidth(65);
+        jTable2.getColumnModel().getColumn(3).setMaxWidth(65);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -345,14 +341,14 @@ public class Interface_Client extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 666, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

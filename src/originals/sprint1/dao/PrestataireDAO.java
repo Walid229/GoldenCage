@@ -77,6 +77,25 @@ try {
           return false;
         }
     }
+    
+    public void banPrestataire(String id, int valeur){
+         String requete = "UPDATE prestataire SET ban=? WHERE id_prestataire = ?";
+        try {
+            PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
+           
+            ps.setInt(1,valeur);
+            ps.setInt(2, Integer.parseInt(id));
+                  
+            ps.executeUpdate();
+            
+            System.out.println("Mise à jour effectuée avec succès");
+       
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors de la mise à jour "+ex.getMessage());
+        }
+        
+    }
 
     public ResultSet find(String recherche, int type) {
             

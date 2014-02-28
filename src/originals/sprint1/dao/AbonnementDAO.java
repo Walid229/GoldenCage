@@ -13,6 +13,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import originals.sprint1.entities.AbonnementEntite;
 import originals.sprint1.util.MyConnection;
 
@@ -69,18 +71,40 @@ try {
         }
     }
     
-    public boolean updateDate(Date date, String id) {
-         try {
-
-        PreparedStatement prepare=MyConnection.getInstance().prepareStatement("UPDATE abonnement SET date="+date+" where id_prestataire ="+id);
-
-        prepare.executeUpdate();
-
-        return true;
-
+    public void updateDate(Date date, String id) {
+        
+         String requete = "UPDATE abonnement SET date= ? WHERE id_prestataire=?";
+        try {
+            PreparedStatement ps = MyConnection.getInstance().prepareStatement(requete);
+            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+            ps.setDate(1,sqlDate);
+            ps.setInt(2, Integer.parseInt(id));
+           
+            ps.executeUpdate();
+            
+            System.out.println("Mise à jour effectuée avec succès");
         } catch (SQLException ex) {
-          return false;
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors de la mise à jour "+ex.getMessage());
         }
+        
+//        System.out.println("UPDATE abonnement SET date='"+ date +"' where id_prestataire ="+id);
+//        try {
+//            System.out.println("UPDATE abonnement SET date='"+ date +"' where id_prestataire ="+id);
+//            
+//              st=MyConnection.getInstance().createStatement();
+//              ResultSet res =st.executeQuery("UPDATE abonnement SET date="+date+" where id_prestataire ="+id);
+//              
+//
+//              System.out.println("UPDATE abonnement SET date="+date+" where id_prestataire ="+id);
+//
+//              return true;
+//        } catch (SQLException ex) {
+//            
+//            Logger.getLogger(AbonnementDAO.class.getName()).log(Level.SEVERE, null, ex);
+//            return false;
+//        }
+
     }
 
     @Override
@@ -119,7 +143,7 @@ try {
             st=MyConnection.getInstance().createStatement();
             
             ResultSet res =st.executeQuery("select id_prestataire as Prestataire, duree as Durée, date as Date from abonnement where id_prestataire ="+id);
-           
+            
             return res;
             
         }
