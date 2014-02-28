@@ -6,6 +6,14 @@
 
 package originals.sprint1.gui;
 
+import javax.swing.JOptionPane;
+import originals.sprint1.entities.AdministrateurEntite;
+import originals.sprint1.entities.ClientEntite;
+import originals.sprint1.entities.PrestataireEntite;
+import originals.sprint1.metier.AdministrateurMetier;
+import originals.sprint1.metier.ClientMetier;
+import originals.sprint1.metier.PrestataireMetier;
+
 /**
  *
  * @author user
@@ -33,16 +41,18 @@ public class Authentification extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        login = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        mdp = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        client = new javax.swing.JRadioButton();
+        prestataire = new javax.swing.JRadioButton();
+        login = new javax.swing.JTextField();
+        mdp = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBounds(new java.awt.Rectangle(350, 50, 0, 0));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -60,9 +70,7 @@ public class Authentification extends javax.swing.JFrame {
         jLabel4.setText("Vous êtes : ");
 
         jButton2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jButton2.setText("Connexion");
-        jButton2.setMaximumSize(new java.awt.Dimension(93, 25));
-        jButton2.setMinimumSize(new java.awt.Dimension(93, 25));
+        jButton2.setText("Fermer");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -70,18 +78,18 @@ public class Authentification extends javax.swing.JFrame {
         });
 
         jButton1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jButton1.setText("Fermer");
+        jButton1.setText("Connexion");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setText("Client");
+        buttonGroup1.add(client);
+        client.setText("Client");
 
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setText("Prestataire");
+        buttonGroup1.add(prestataire);
+        prestataire.setText("Prestataire");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -91,25 +99,25 @@ public class Authentification extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(183, 183, 183)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton2)
                         .addGap(18, 18, 18)
                         .addComponent(jButton1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(38, 38, 38)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(77, 77, 77)
-                                .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel4))
-                                .addGap(24, 24, 24)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(mdp, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jRadioButton1)
-                                    .addComponent(jRadioButton2)))))
+                                .addGap(24, 24, 24))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(77, 77, 77)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(client)
+                            .addComponent(prestataire)
+                            .addComponent(login)
+                            .addComponent(mdp, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(134, 134, 134)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -130,12 +138,12 @@ public class Authentification extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jRadioButton1))
+                    .addComponent(client))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jRadioButton2)
+                .addComponent(prestataire)
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2)
                     .addComponent(jButton1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -161,30 +169,55 @@ public class Authentification extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       /*
-        if(client.isSelected()) {
-            if((login.getText().equals(a.getLogin()))&&(mdp.getText().equals(a.getPassword())))*/
-            Interface_Client gerercomptes=new Interface_Client();
-                gerercomptes.setVisible(true);
-                this.setVisible(false);
-        
-        /*if(prestataire.isSelected()) {
-            GererComptes gerercomptes=new GererComptes();
-                gerercomptes.setVisible(true);
-                this.setVisible(false);
-        }*/
-        
+      
+        this.setVisible(false);
+        this.dispose();
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        /*List<AdministrateurEntite> admins=new ArrayList<AdministrateurEntite>();
-        for(AdministrateurEntite a:admins){
-            if( (login.getText().equals(a.getLogin()))&&(mdp.getText().equals(a.getPassword()))){*/
-               
+       String log=login.getText();
+       String pwd=String.copyValueOf(mdp.getPassword());
 
+        
+try
+{
+          if (client.isSelected())
+        {   ClientEntite cli=new ClientEntite();
+        cli.setLogin(log);
+        cli.setPassword(pwd);
+        ClientMetier cM= new ClientMetier();
+        cM.verifierClient(cli);
+              
+    }
+        
+            
+    else if (prestataire.isSelected())
+        {
+            
+            PrestataireEntite prest=new PrestataireEntite();
+            prest.setLogin(log);
+            prest.setMdp(pwd);
+            PrestataireMetier admM= new PrestataireMetier();
+            admM.verifierPrestataire(prest);
+            
+
+        }
+    else if(client.isSelected()==false&& prestataire.isSelected()==false)
+        {
+            AdministrateurEntite admin=new AdministrateurEntite();
+        admin.setLogin(log);
+        admin.setPassword(pwd);
+       AdministrateurMetier admM= new AdministrateurMetier();
+        admM.verifierAdmin(admin);
             }
-            /*}
+   
+        
+          
+    
+        
+        //this.setVisible(false);
+        }catch(Exception e){JOptionPane.showMessageDialog(null,"Login ou Mot de passe incorrecte ");}
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -217,7 +250,9 @@ public class Authentification extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                
                 new Authentification().setVisible(true);
+                
             }
         });
     }
@@ -225,6 +260,7 @@ public class Authentification extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JRadioButton client;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -232,9 +268,8 @@ public class Authentification extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JTextField login;
-    private javax.swing.JTextField mdp;
+    private javax.swing.JPasswordField mdp;
+    private javax.swing.JRadioButton prestataire;
     // End of variables declaration//GEN-END:variables
 }

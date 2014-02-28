@@ -67,6 +67,7 @@ public class Interface_Client extends javax.swing.JFrame {
         jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBounds(new java.awt.Rectangle(300, 50, 0, 0));
         setPreferredSize(new java.awt.Dimension(740, 470));
 
         jButton1.setText("Logout");

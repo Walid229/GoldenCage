@@ -4,8 +4,10 @@
  */
 package originals.sprint1.metier;
 
+import javax.swing.JOptionPane;
 import originals.sprint1.dao.AdministrateurDAO;
 import originals.sprint1.entities.AdministrateurEntite;
+import originals.sprint1.gui.GererComptes;
 
 
 
@@ -28,5 +30,16 @@ public class AdministrateurMetier {
         
         adminDAO.update(admin, admin);
     }
+     public void verifierAdmin(AdministrateurEntite admin){
+         AdministrateurDAO aDao=new AdministrateurDAO();
+        admin=aDao.findAuth(admin.getLogin(), admin.getPassword());
+        if(admin!=null)
+        {
+            System.out.println("sa marche");
+            GererComptes a=new GererComptes();
+                a.setVisible(true);
+                
+        }
+        else JOptionPane.showMessageDialog(null,"Administrateur: veuilez verifier votre login et mot de passe ");}
     
 }

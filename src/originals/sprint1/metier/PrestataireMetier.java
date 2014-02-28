@@ -5,8 +5,10 @@
 package originals.sprint1.metier;
 
 import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 import originals.sprint1.dao.PrestataireDAO;
 import originals.sprint1.entities.PrestataireEntite;
+import originals.sprint1.gui.Interface_Prestataire;
 import originals.sprint1.util.MyConnection;
 
 /**
@@ -77,5 +79,15 @@ public class PrestataireMetier {
         PrestataireDAO prestDAO = new PrestataireDAO();
         return prestDAO.find(recherch, i);
     }
-    
+    public void verifierPrestataire(PrestataireEntite cli){
+         PrestataireDAO cDao=new PrestataireDAO();
+        cli=cDao.findAuth(cli.getLogin(), cli.getMdp());
+        if(cli!=null)
+        {
+            System.out.println("sa marche");
+            Interface_Prestataire a=new Interface_Prestataire();
+                a.setVisible(true);
+                
+        }
+        else JOptionPane.showMessageDialog(null,"Prestatairee chnawa 3ad Votre login et mot de passe sont incorrecte ");}
 }
