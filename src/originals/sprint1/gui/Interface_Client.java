@@ -71,11 +71,6 @@ public class Interface_Client extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(740, 470));
 
         jButton1.setText("Logout");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         jPanel6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
@@ -224,9 +219,11 @@ public class Interface_Client extends javax.swing.JFrame {
             }
         ));
         jScrollPane6.setViewportView(jTable1);
-        jTable1.getColumnModel().getColumn(0).setMinWidth(100);
-        jTable1.getColumnModel().getColumn(0).setPreferredWidth(100);
-        jTable1.getColumnModel().getColumn(0).setMaxWidth(100);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setMinWidth(100);
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(100);
+            jTable1.getColumnModel().getColumn(0).setMaxWidth(100);
+        }
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel2.setText("Reponse:");
@@ -272,15 +269,17 @@ public class Interface_Client extends javax.swing.JFrame {
             }
         });
         jScrollPane9.setViewportView(jTable2);
-        jTable2.getColumnModel().getColumn(1).setMinWidth(65);
-        jTable2.getColumnModel().getColumn(1).setPreferredWidth(65);
-        jTable2.getColumnModel().getColumn(1).setMaxWidth(65);
-        jTable2.getColumnModel().getColumn(2).setMinWidth(65);
-        jTable2.getColumnModel().getColumn(2).setPreferredWidth(65);
-        jTable2.getColumnModel().getColumn(2).setMaxWidth(65);
-        jTable2.getColumnModel().getColumn(3).setMinWidth(65);
-        jTable2.getColumnModel().getColumn(3).setPreferredWidth(65);
-        jTable2.getColumnModel().getColumn(3).setMaxWidth(65);
+        if (jTable2.getColumnModel().getColumnCount() > 0) {
+            jTable2.getColumnModel().getColumn(1).setMinWidth(65);
+            jTable2.getColumnModel().getColumn(1).setPreferredWidth(65);
+            jTable2.getColumnModel().getColumn(1).setMaxWidth(65);
+            jTable2.getColumnModel().getColumn(2).setMinWidth(65);
+            jTable2.getColumnModel().getColumn(2).setPreferredWidth(65);
+            jTable2.getColumnModel().getColumn(2).setMaxWidth(65);
+            jTable2.getColumnModel().getColumn(3).setMinWidth(65);
+            jTable2.getColumnModel().getColumn(3).setPreferredWidth(65);
+            jTable2.getColumnModel().getColumn(3).setMaxWidth(65);
+        }
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
