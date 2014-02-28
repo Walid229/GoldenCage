@@ -180,6 +180,7 @@ public class GererComptes extends javax.swing.JFrame {
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
         jCalendar1 = new com.toedter.calendar.JCalendar();
         jButton5 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -465,6 +466,13 @@ public class GererComptes extends javax.swing.JFrame {
             }
         });
 
+        jButton8.setText("Ban");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -504,6 +512,8 @@ public class GererComptes extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(66, 66, 66)
                 .addComponent(jButton5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton8)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -536,7 +546,9 @@ public class GererComptes extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(18, 18, 18)
-                .addComponent(jButton5)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton5)
+                    .addComponent(jButton8))
                 .addContainerGap(591, Short.MAX_VALUE))
         );
 
@@ -931,7 +943,9 @@ public class GererComptes extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         int row=compte_table.getSelectedRow();
-        String idprest=(compte_table.getModel().getValueAt(row, 1).toString());
+        String idprest =(compte_table.getModel().getValueAt(row, 1).toString());
+        
+        System.out.println(idprest);
         Date date = jCalendar1.getDate();
         
         AbonnementMetier abnM = new AbonnementMetier();
@@ -941,6 +955,19 @@ public class GererComptes extends javax.swing.JFrame {
         System.out.println(test);
         
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+         int row=compte_table.getSelectedRow();
+         String idprest =(compte_table.getModel().getValueAt(row, 0).toString());
+        
+         
+         
+        PrestataireMetier pres = new PrestataireMetier();
+        // si ban alors ban = 0 si nn alors ban = 1
+        pres.bannirPres(idprest, 0);
+        
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     
     /**
@@ -993,6 +1020,7 @@ public class GererComptes extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private com.toedter.calendar.JCalendar jCalendar1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;

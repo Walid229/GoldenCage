@@ -27,6 +27,18 @@ public class PrestataireMetier {
        
     }
        
+       public boolean bannirPres(String id, int value){
+           
+           try {
+               PrestataireDAO pres = new PrestataireDAO();
+               pres.banPrestataire(id, value);
+               return true;
+           } catch (Exception e) {
+               return false;
+           }
+           
+       }
+       
        public void supprimer(){
         
         PrestataireEntite prest = new PrestataireEntite();

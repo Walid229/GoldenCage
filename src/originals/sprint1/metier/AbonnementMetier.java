@@ -28,8 +28,15 @@ public class AbonnementMetier {
     }
     
     public boolean MajDate(Date date, String id){
-        AbonnementDAO abn = new AbonnementDAO();
-        return abn.updateDate(date, id);
+        
+        try {
+            AbonnementDAO abn = new AbonnementDAO();
+            abn.updateDate(date, id);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+        
     }
     
     public void supprimer(){
